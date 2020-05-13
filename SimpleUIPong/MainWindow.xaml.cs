@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
@@ -12,6 +13,10 @@ namespace SimpleUIPong
     /// </summary>
     public partial class MainWindow
     {
+
+        private Rectangle player;
+        private Rectangle enemy;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -22,10 +27,32 @@ namespace SimpleUIPong
 
             AddCanvasBorder();
 
-            CreatePlayerRect();
-            CreateEnemyRect();
+            InitCanvasComponents();
+
+
+            this.KeyDown += PlayerMovementHandler;
+
+        }
+
+        private void InitCanvasComponents()
+        {
+            this.player = CreatePlayerRect();
+            this.enemy = CreateEnemyRect();
             CreatePongBall();
-            
+        }
+
+
+        private void PlayerMovementHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Down)
+            {
+                Canvas.SetTop(this.player, (double)this.player.GetValue(Canvas.TopProperty) + 10);
+            }
+
+            if (e.Key == Key.Up)
+            {
+                Canvas.SetTop(this.player, (double)this.player.GetValue(Canvas.TopProperty) - 10);
+            }
         }
 
         public void AddCanvasBorder()
@@ -42,7 +69,7 @@ namespace SimpleUIPong
             Canvas.SetLeft(border, 0);
         }
 
-        public void CreatePlayerRect()
+        public Rectangle CreatePlayerRect()
         {
             Rectangle rectangle = new Rectangle();
             rectangle.Height = Constants.PLAYER_HEIGHT;
@@ -63,11 +90,12 @@ namespace SimpleUIPong
 
             // Add Rectangle to the Grid.  
             RootCanvas.Children.Add(rectangle);
-            Canvas.SetTop(rectangle, Constants.CANVAS_HEIGHT / 2 - rectangle.Height / 2);
+            Canvas.SetTop(rectangle, Constants.CANVAS_HEIGHT/2 - rectangle.Height/2);
             Canvas.SetLeft(rectangle, 20);
+            return rectangle;
         }
 
-        public void CreateEnemyRect()
+        public Rectangle CreateEnemyRect()
         {
             Rectangle rectangle = new Rectangle();
             rectangle.Height = Constants.PLAYER_HEIGHT;
@@ -90,9 +118,10 @@ namespace SimpleUIPong
             RootCanvas.Children.Add(rectangle);
             Canvas.SetTop(rectangle, Constants.CANVAS_HEIGHT/2 - rectangle.Height/2);
             Canvas.SetRight(rectangle, 20);
+            return rectangle;
         }
 
-        public void CreatePongBall()
+        public Rectangle CreatePongBall()
         {
             Rectangle ball = new Rectangle();
             ball.Height = Constants.BALL_LENGTH;
@@ -115,6 +144,7 @@ namespace SimpleUIPong
             RootCanvas.Children.Add(ball);
             Canvas.SetTop(ball, Constants.CANVAS_HEIGHT/2 - ball.Height/2);
             Canvas.SetLeft(ball, Constants.CANVAS_WIDTH/2 - ball.Width/2);
+            return ball;
         }
     }
 }
