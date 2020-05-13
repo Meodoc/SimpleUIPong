@@ -24,8 +24,8 @@ namespace SimpleUIPong
         public void CreatePlayerRect()
         {
             Rectangle rectangle = new Rectangle();
-            rectangle.Height = 100;
-            rectangle.Width = 20;
+            rectangle.Height = Constants.PLAYER_HEIGHT;
+            rectangle.Width = Constants.PLAYER_WIDTH;
 
             // Create brushes
             SolidColorBrush blueBrush = new SolidColorBrush();
@@ -49,8 +49,8 @@ namespace SimpleUIPong
         public void CreateEnemyRect()
         {
             Rectangle rectangle = new Rectangle();
-            rectangle.Height = 100;
-            rectangle.Width = 20;
+            rectangle.Height = Constants.PLAYER_HEIGHT;
+            rectangle.Width = Constants.PLAYER_WIDTH;
 
             // Create brushes
             SolidColorBrush redBrush = new SolidColorBrush();
