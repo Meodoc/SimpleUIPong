@@ -6,7 +6,13 @@
         xmlns:local="clr-namespace:SimpleUIPong"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <Canvas x:Name="RootCanvas" >
+    </Canvas>
+    <!-->
     <Grid>
-        
+        <Rectangle Fill="Blue" Stroke="Black" StrokeThickness="4" Margin="37,75,453,120" />
+        <Rectangle Fill="Blue" Stroke="Black" StrokeThickness="4" Margin="461,75,29,120" />
+        <Rectangle Fill="Blue" Stroke="Black" StrokeThickness="4" Margin="251,111,242,175" />
     </Grid>
+    </-->
 </Window>
