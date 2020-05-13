@@ -24,14 +24,7 @@ namespace SimpleUIPong
             this.ball = new Ball(rootCanvas);
 
             InitKeyHandlers();
-            InitTimer();
-        }
-
-        private void InitTimer()
-        {
-            DispatcherTimer timer = new DispatcherTimer {Interval = TimeSpan.FromMilliseconds(1)};
-            timer.Tick += Run;
-            timer.Start();
+            InitAndStartTimer();
         }
 
         private void Run(object sender, EventArgs e)
@@ -39,7 +32,12 @@ namespace SimpleUIPong
             ball.UpdatePosition();
         }
 
-
+        private void InitAndStartTimer()
+        {
+            DispatcherTimer timer = new DispatcherTimer {Interval = TimeSpan.FromMilliseconds(Constants.REFRESH_RATE)};
+            timer.Tick += Run;
+            timer.Start();
+        }
 
         private void InitKeyHandlers()
         {

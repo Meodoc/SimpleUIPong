@@ -9,6 +9,8 @@ namespace SimpleUIPong
 {
     static class Constants
     {
+        public const int REFRESH_RATE = 1;
+
         public const int PLAYER_WIDTH = 20;
         public const int PLAYER_HEIGHT = 200;
 
