@@ -18,6 +18,7 @@ namespace SimpleUIPong
         //private Rectangle enemy;
 
         private Player player;
+        private Enemy enemy;
 
 
         public MainWindow()
@@ -39,7 +40,8 @@ namespace SimpleUIPong
 
         private void InitCanvasComponents()
         {
-            this.player = new Player(RootCanvas, CreatePlayerRect());
+            this.player = new Player(RootCanvas);
+            this.enemy = new Enemy(RootCanvas);
             CreatePongBall();
         }
 
@@ -71,57 +73,7 @@ namespace SimpleUIPong
             Canvas.SetLeft(border, 0);
         }
 
-        public Rectangle CreatePlayerRect()
-        {
-            Rectangle rectangle = new Rectangle();
-            rectangle.Height = Constants.PLAYER_HEIGHT;
-            rectangle.Width = Constants.PLAYER_WIDTH;
-
-            // Create brushes
-            SolidColorBrush blueBrush = new SolidColorBrush();
-            blueBrush.Color = Colors.Blue;
-            SolidColorBrush blackBrush = new SolidColorBrush();
-            blackBrush.Color = Colors.Black;
-
-            // Set stroke
-            rectangle.StrokeThickness = 2;
-            rectangle.Stroke = blackBrush;
-
-            // Fill rectangle with blue color  
-            rectangle.Fill = blueBrush;
-
-            // Add Rectangle to the Grid.  
-            RootCanvas.Children.Add(rectangle);
-            Canvas.SetTop(rectangle, Constants.CANVAS_HEIGHT/2 - rectangle.Height/2);
-            Canvas.SetLeft(rectangle, 20);
-            return rectangle;
-        }
-
-        public Rectangle CreateEnemyRect()
-        {
-            Rectangle rectangle = new Rectangle();
-            rectangle.Height = Constants.PLAYER_HEIGHT;
-            rectangle.Width = Constants.PLAYER_WIDTH;
-
-            // Create brushes
-            SolidColorBrush redBrush = new SolidColorBrush();
-            redBrush.Color = Colors.Red;
-            SolidColorBrush blackBrush = new SolidColorBrush();
-            blackBrush.Color = Colors.Black;
-
-            // Set stroke
-            rectangle.StrokeThickness = 2;
-            rectangle.Stroke = blackBrush;
-
-            // Fill rectangle with blue color  
-            rectangle.Fill = redBrush;
-
-            // Add Rectangle to the Grid.  
-            RootCanvas.Children.Add(rectangle);
-            Canvas.SetTop(rectangle, Constants.CANVAS_HEIGHT/2 - rectangle.Height/2);
-            Canvas.SetRight(rectangle, 20);
-            return rectangle;
-        }
+       
 
         public Rectangle CreatePongBall()
         {
