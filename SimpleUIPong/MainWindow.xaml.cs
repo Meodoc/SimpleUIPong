@@ -19,6 +19,7 @@ namespace SimpleUIPong
 
         private Player player;
         private Enemy enemy;
+        private Ball ball;
 
 
         public MainWindow()
@@ -42,7 +43,7 @@ namespace SimpleUIPong
         {
             this.player = new Player(RootCanvas);
             this.enemy = new Enemy(RootCanvas);
-            CreatePongBall();
+            this.ball = new Ball(RootCanvas);
         }
 
 
@@ -73,32 +74,5 @@ namespace SimpleUIPong
             Canvas.SetLeft(border, 0);
         }
 
-       
-
-        public Rectangle CreatePongBall()
-        {
-            Rectangle ball = new Rectangle();
-            ball.Height = Constants.BALL_LENGTH;
-            ball.Width = Constants.BALL_LENGTH;
-
-            // Create brushes
-            //SolidColorBrush redBrush = new SolidColorBrush();
-            //redBrush.Color = Colors.Red;
-            SolidColorBrush blackBrush = new SolidColorBrush();
-            blackBrush.Color = Colors.Black;
-
-            // Set stroke
-            ball.StrokeThickness = 2;
-            ball.Stroke = blackBrush;
-
-            // Fill rectangle with blue color  
-            ball.Fill = blackBrush;
-
-            // Add Rectangle to the Grid.  
-            RootCanvas.Children.Add(ball);
-            Canvas.SetTop(ball, Constants.CANVAS_HEIGHT/2 - ball.Height/2);
-            Canvas.SetLeft(ball, Constants.CANVAS_WIDTH/2 - ball.Width/2);
-            return ball;
-        }
     }
 }
