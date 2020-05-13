@@ -1,5 +1,9 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Threading;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace SimpleUIPong
 {
@@ -11,6 +15,7 @@ namespace SimpleUIPong
         private Enemy enemy;
         private Ball ball;
 
+
         public Pong(Canvas rootCanvas)
         {
             this.rootCanvas = rootCanvas;
@@ -19,7 +24,22 @@ namespace SimpleUIPong
             this.ball = new Ball(rootCanvas);
 
             InitKeyHandlers();
+            InitTimer();
         }
+
+        private void InitTimer()
+        {
+            DispatcherTimer timer = new DispatcherTimer {Interval = TimeSpan.FromMilliseconds(1)};
+            timer.Tick += Run;
+            timer.Start();
+        }
+
+        private void Run(object sender, EventArgs e)
+        {
+            ball.UpdatePosition();
+        }
+
+
 
         private void InitKeyHandlers()
         {

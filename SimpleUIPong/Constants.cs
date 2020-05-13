@@ -16,5 +16,7 @@ namespace SimpleUIPong
 
         public const int CANVAS_WIDTH = 700;
         public const int CANVAS_HEIGHT = 500;
+
+        public const int BALL_SPEED = 3;
     }
 }

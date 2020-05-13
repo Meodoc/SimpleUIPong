@@ -19,7 +19,6 @@ namespace SimpleUIPong
             InitializeComponent();
             InitializeRootCanvas();
             AddCanvasBorder();
-
             new Pong(RootCanvas);
         }
 

@@ -8,19 +8,34 @@ namespace SimpleUIPong
     public class Ball
     {
         private readonly Canvas rootCanvas;
-        
+
         public Rectangle Rect { get; set; }
-        public Vector Vector { get; set; } = new Vector(-1, 0);
+        public Vector Dir { get; set; } = new Vector(-Constants.BALL_SPEED, 0);
+
+        private Vector pos;
 
         public Ball(Canvas rootCanvas)
         {
             this.rootCanvas = rootCanvas;
             this.Rect = CreatePongBall();
+            this.pos = new Vector(
+                (double) this.Rect.GetValue(Canvas.LeftProperty),
+                (double) this.Rect.GetValue(Canvas.TopProperty)
+            );
         }
 
         public Ball(Canvas rootCanvas, Rectangle rect) : this(rootCanvas)
         {
             this.Rect = rect;
+        }
+
+        public void UpdatePosition()
+        {
+            this.pos.X += Dir.X;
+            this.pos.Y += Dir.Y;
+
+            this.Rect.SetValue(Canvas.LeftProperty, pos.X);
+            this.Rect.SetValue(Canvas.TopProperty, pos.Y);
         }
 
         public Rectangle CreatePongBall()
@@ -45,6 +60,5 @@ namespace SimpleUIPong
             Canvas.SetLeft(ball, Constants.CANVAS_WIDTH / 2 - ball.Width / 2);
             return ball;
         }
-
     }
 }
