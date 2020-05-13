@@ -63,8 +63,8 @@ namespace SimpleUIPong
 
             // Add Rectangle to the Grid.  
             RootCanvas.Children.Add(rectangle);
-            Canvas.SetTop(rectangle, 50);
-            Canvas.SetLeft(rectangle, 10);
+            Canvas.SetTop(rectangle, Constants.CANVAS_HEIGHT / 2 - rectangle.Height / 2);
+            Canvas.SetLeft(rectangle, 20);
         }
 
         public void CreateEnemyRect()
@@ -88,8 +88,8 @@ namespace SimpleUIPong
 
             // Add Rectangle to the Grid.  
             RootCanvas.Children.Add(rectangle);
-            Canvas.SetTop(rectangle, 50);
-            Canvas.SetRight(rectangle, 10);
+            Canvas.SetTop(rectangle, Constants.CANVAS_HEIGHT/2 - rectangle.Height/2);
+            Canvas.SetRight(rectangle, 20);
         }
 
         public void CreatePongBall()
@@ -113,8 +113,8 @@ namespace SimpleUIPong
 
             // Add Rectangle to the Grid.  
             RootCanvas.Children.Add(ball);
-            Canvas.SetTop(ball, Constants.CANVAS_HEIGHT - ball.Height/2);
-            Canvas.SetLeft(ball, Constants.CANVAS_WIDTH - ball.Width/2);
+            Canvas.SetTop(ball, Constants.CANVAS_HEIGHT/2 - ball.Height/2);
+            Canvas.SetLeft(ball, Constants.CANVAS_WIDTH/2 - ball.Width/2);
         }
     }
 }
