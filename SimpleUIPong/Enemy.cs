@@ -8,6 +8,7 @@ namespace SimpleUIPong
     public class Enemy
     {
         private readonly Canvas rootCanvas;
+
         public Rectangle Rect { get; set; }
 
 

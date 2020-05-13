@@ -14,53 +14,24 @@ namespace SimpleUIPong
     public partial class MainWindow
     {
 
-        //private Rectangle player;
-        //private Rectangle enemy;
-
-        private Player player;
-        private Enemy enemy;
-        private Ball ball;
-
-
         public MainWindow()
         {
             InitializeComponent();
             InitializeRootCanvas();
-
             AddCanvasBorder();
 
-            InitCanvasComponents();
-
-            this.KeyDown += PlayerMovementHandler;
-
+            new Pong(RootCanvas);
         }
 
         private void InitializeRootCanvas()
         {
             RootCanvas.Width = Constants.CANVAS_WIDTH;
             RootCanvas.Height = Constants.CANVAS_HEIGHT;
+            RootCanvas.Background = Brushes.Transparent;
+            RootCanvas.Focusable = true;
+            RootCanvas.Focus();
         }
 
-        private void InitCanvasComponents()
-        {
-            this.player = new Player(RootCanvas);
-            this.enemy = new Enemy(RootCanvas);
-            this.ball = new Ball(RootCanvas);
-        }
-
-
-        private void PlayerMovementHandler(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Down)
-            {
-                Canvas.SetTop(this.player.Rect, (double)this.player.Rect.GetValue(Canvas.TopProperty) + 10);
-            }
-
-            if (e.Key == Key.Up)
-            {
-                Canvas.SetTop(this.player.Rect, (double)this.player.Rect.GetValue(Canvas.TopProperty) - 10);
-            }
-        }
 
         public void AddCanvasBorder()
         {

@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
@@ -9,6 +10,7 @@ namespace SimpleUIPong
         private readonly Canvas rootCanvas;
         
         public Rectangle Rect { get; set; }
+        public Vector Vector { get; set; } = new Vector(-1, 0);
 
         public Ball(Canvas rootCanvas)
         {

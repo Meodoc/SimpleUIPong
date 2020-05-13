@@ -7,6 +7,7 @@ namespace SimpleUIPong
     public class Player
     {
         private readonly Canvas rootCanvas;
+
         public Rectangle Rect { get; set; }
 
 
