@@ -58,6 +58,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Ball.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="MainWindow.xaml.cs">

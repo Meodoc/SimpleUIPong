@@ -17,9 +17,8 @@ namespace SimpleUIPong
             this.Rect = CreateEnemyRect();
         }
 
-        public Enemy(Canvas rootCanvas, Rectangle rect)
+        public Enemy(Canvas rootCanvas, Rectangle rect) : this(rootCanvas)
         {
-            this.rootCanvas = rootCanvas;
             this.Rect = rect;
         }
 

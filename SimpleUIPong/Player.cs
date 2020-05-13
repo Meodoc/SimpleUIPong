@@ -16,9 +16,8 @@ namespace SimpleUIPong
             this.Rect = CreatePlayerRect();
         }
 
-        public Player(Canvas rootCanvas, Rectangle rect)
+        public Player(Canvas rootCanvas, Rectangle rect) : this(rootCanvas)
         {
-            this.rootCanvas = rootCanvas;
             this.Rect = rect;
         }
 
