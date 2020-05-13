@@ -14,8 +14,11 @@ namespace SimpleUIPong
     public partial class MainWindow
     {
 
-        private Rectangle player;
-        private Rectangle enemy;
+        //private Rectangle player;
+        //private Rectangle enemy;
+
+        private Player player;
+
 
         public MainWindow()
         {
@@ -36,8 +39,7 @@ namespace SimpleUIPong
 
         private void InitCanvasComponents()
         {
-            this.player = CreatePlayerRect();
-            this.enemy = CreateEnemyRect();
+            this.player = new Player(RootCanvas, CreatePlayerRect());
             CreatePongBall();
         }
 
@@ -46,12 +48,12 @@ namespace SimpleUIPong
         {
             if (e.Key == Key.Down)
             {
-                Canvas.SetTop(this.player, (double)this.player.GetValue(Canvas.TopProperty) + 10);
+                Canvas.SetTop(this.player.Rect, (double)this.player.Rect.GetValue(Canvas.TopProperty) + 10);
             }
 
             if (e.Key == Key.Up)
             {
-                Canvas.SetTop(this.player, (double)this.player.GetValue(Canvas.TopProperty) - 10);
+                Canvas.SetTop(this.player.Rect, (double)this.player.Rect.GetValue(Canvas.TopProperty) - 10);
             }
         }
 
