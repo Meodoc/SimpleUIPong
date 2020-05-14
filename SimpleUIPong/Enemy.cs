@@ -29,6 +29,14 @@ namespace SimpleUIPong
             this.Rect = rect;
         }
 
+        public void UpdatePosition(double y)
+        {
+            this.Pos = new Vector(Pos.X, Pos.Y + y);
+
+            this.Rect.SetValue(Canvas.LeftProperty, Pos.X);
+            this.Rect.SetValue(Canvas.TopProperty, Pos.Y);
+        }
+
         public Rectangle CreateEnemyRect()
         {
             Rectangle rectangle = new Rectangle {Height = Constants.PLAYER_HEIGHT, Width = Constants.PLAYER_WIDTH};

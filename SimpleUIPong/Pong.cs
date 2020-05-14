@@ -41,7 +41,18 @@ namespace SimpleUIPong
         private void Run(object sender, EventArgs e)
         {
             ball.UpdatePosition();
+            UpdateEnemyPosition();
             CheckCollision();
+        }
+
+        // Moves the enemy when ball is out of enemy range
+        private void UpdateEnemyPosition()
+        {
+            // "Think" delay and slower movement than framerate
+            if (ball.Pos.Y + ball.Rect.Width < enemy.Pos.Y)
+                enemy.UpdatePosition(-10);
+            else if (ball.Pos.Y > enemy.Pos.Y + enemy.Rect.Height)
+                enemy.UpdatePosition(10);
         }
 
         private void CheckCollision()
