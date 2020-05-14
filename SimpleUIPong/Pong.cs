@@ -87,13 +87,13 @@ namespace SimpleUIPong
         {
             if (e.Key == Key.Down)
             {
-                player.Pos = new Vector(player.Pos.X, player.Pos.Y + 10);
+                player.UpdatePosition(10);
                 Canvas.SetTop(this.player.Rect, player.Pos.Y);
             }
 
             if (e.Key == Key.Up)
             {
-                player.Pos = new Vector(player.Pos.X, player.Pos.Y - 10);
+                player.UpdatePosition(-10);
                 Canvas.SetTop(this.player.Rect, player.Pos.Y);
             }
         }
