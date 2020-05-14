@@ -33,6 +33,9 @@ namespace SimpleUIPong
             InitAndStartTimer();
 
             // TODO: make keyDown refresh with the clock somehow
+            // TODO: make ball refelction from player random
+            // TODO: clamp player movement
+            // TODO: smooth player movement
         }
 
         private void Run(object sender, EventArgs e)
@@ -43,8 +46,8 @@ namespace SimpleUIPong
 
         private void CheckCollision()
         {
-            CheckBorderCollision();
             CheckPlayerCollision();
+            CheckBorderCollision();
         }
 
 
