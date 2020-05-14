@@ -39,6 +39,7 @@ namespace SimpleUIPong
             // TODO: make ball refelction from player random
             // TODO: clamp player movement
             // TODO: smooth player movement
+            // TODO: dynamic margin!
         }
 
         private void Run(object sender, EventArgs e)
@@ -67,7 +68,7 @@ namespace SimpleUIPong
 
         private void HandlePlayerCollision()
         {
-            playerPosLabel.Content = "X: " + enemy.Pos.X + " Y: " + enemy.Pos.Y;
+            playerPosLabel.Content = "X: " + ball.Pos.X + " Y: " + ball.Pos.Y;
 
 
             if (ball.Pos.X < player.Pos.X + player.Rect.Width &&
@@ -97,18 +98,18 @@ namespace SimpleUIPong
                 ball.Reflect(Constants.VEC_UP);
 
             // Left border
-            if (ball.Pos.Y < 0)
+            if (ball.Pos.X < 0)
                 StopTimerAndFinishGame(false);
 
             // Right border
-            if (ball.Pos.Y + ball.Rect.Width > Constants.CANVAS_WIDTH)
+            if (ball.Pos.X + ball.Rect.Width > Constants.CANVAS_WIDTH)
                 StopTimerAndFinishGame(true);
         }
 
-        private void StopTimerAndFinishGame(Boolean won)
+        private void StopTimerAndFinishGame(bool won)
         {
             timer.Stop();
-
+            winnerMsgLabel.Content = won ? "YOU WON" : "YOU LOST";
         }
 
         private void InitAndStartTimer()

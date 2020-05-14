@@ -23,6 +23,15 @@ namespace SimpleUIPong
         public const int CANVAS_WIDTH = 700;
         public const int CANVAS_HEIGHT = 500;
 
+        public const int WIN_LABEL_HEIGHT = 50;
+        public const int WIN_LABEL_WIDTH = 100;
+        public const int WIN_LABEL_FONTSIZE = 20;
+
+        //public static readonly string WIN_LABEL_MARGIN = String.Format("{CANVAS_WIDTH / 2 - WIN_LABEL_WIDTH / 2} {CANVAS_HEIGHT / 2 - WIN_LABEL_HEIGHT / 2}");
+        //public static readonly Thickness WIN_LABEL_MARGIN = new Thickness(CANVAS_WIDTH / 2 - WIN_LABEL_WIDTH / 2, CANVAS_HEIGHT / 2 - WIN_LABEL_HEIGHT / 2, 0, 0);
+
+
+
         public const int BALL_SPEED = 3;
 
         public static readonly Vector VEC_UP = new Vector(0, -1);
