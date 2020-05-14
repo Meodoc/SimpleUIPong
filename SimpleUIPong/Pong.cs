@@ -42,7 +42,7 @@ namespace SimpleUIPong
         {
             ball.UpdatePosition();
             UpdateEnemyPosition();
-            CheckCollision();
+            HandleCollisions();
         }
 
         // Moves the enemy when ball is out of enemy range
@@ -55,14 +55,14 @@ namespace SimpleUIPong
                 enemy.UpdatePosition(10);
         }
 
-        private void CheckCollision()
+        private void HandleCollisions()
         {
-            CheckPlayerCollision();
-            CheckEnemyCollision();
-            CheckBorderCollision();
+            HandlePlayerCollision();
+            HandleEnemyCollision();
+            HandleBorderCollision();
         }
 
-        private void CheckPlayerCollision()
+        private void HandlePlayerCollision()
         {
             playerPosLabel.Content = "X: " + enemy.Pos.X + " Y: " + enemy.Pos.Y;
 
@@ -72,7 +72,7 @@ namespace SimpleUIPong
                 ball.Reflect(Constants.VEC_RIGHT);
         }
 
-        private void CheckEnemyCollision()
+        private void HandleEnemyCollision()
         {
 
             Boolean trigger1 = ball.Pos.X + ball.Rect.Width > enemy.Pos.X;
@@ -83,7 +83,7 @@ namespace SimpleUIPong
         }
 
 
-        private void CheckBorderCollision()
+        private void HandleBorderCollision()
         {
             // Top border
             if (ball.Pos.Y < 0)
