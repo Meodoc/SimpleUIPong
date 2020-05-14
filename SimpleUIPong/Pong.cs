@@ -25,6 +25,8 @@ namespace SimpleUIPong
 
             InitKeyHandlers();
             InitAndStartTimer();
+
+            // TODO: make keyDown refresh with the clock somehow
         }
 
         private void Run(object sender, EventArgs e)
