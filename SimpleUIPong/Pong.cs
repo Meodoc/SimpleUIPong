@@ -47,7 +47,28 @@ namespace SimpleUIPong
         private void CheckCollision()
         {
             CheckPlayerCollision();
+            CheckEnemyCollision();
             CheckBorderCollision();
+        }
+
+        private void CheckPlayerCollision()
+        {
+            playerPosLabel.Content = "X: " + enemy.Pos.X + " Y: " + enemy.Pos.Y;
+
+
+            if (ball.Pos.X < player.Pos.X + player.Rect.Width &&
+                ball.Pos.Y + ball.Rect.Height > player.Pos.Y && ball.Pos.Y < player.Pos.Y + player.Rect.Height)
+                ball.Reflect(Constants.VEC_RIGHT);
+        }
+
+        private void CheckEnemyCollision()
+        {
+
+            Boolean trigger1 = ball.Pos.X + ball.Rect.Width > enemy.Pos.X;
+            debugLabel.Content = "Ball X trigger: " + trigger1;
+            if (ball.Pos.X + ball.Rect.Width > enemy.Pos.X &&
+                ball.Pos.Y + ball.Rect.Height > enemy.Pos.Y && ball.Pos.Y < enemy.Pos.Y + enemy.Rect.Height)
+                ball.Reflect(Constants.VEC_LEFT);
         }
 
 
@@ -62,17 +83,7 @@ namespace SimpleUIPong
                 ball.Reflect(Constants.VEC_UP);
         }
 
-        private void CheckPlayerCollision()
-        {
-            playerPosLabel.Content = "X: " + player.Pos.X + " Y: " + player.Pos.Y;
-
-            Boolean trigger1 = ball.Pos.X < player.Pos.X + player.Rect.Width;
-            debugLabel.Content = "Ball X trigger: " + trigger1;
-
-            if (ball.Pos.X < player.Pos.X + player.Rect.Width &&
-                ball.Pos.Y + ball.Rect.Height > player.Pos.Y && ball.Pos.Y < player.Pos.Y + player.Rect.Height)
-                ball.Reflect(Constants.VEC_RIGHT);
-        }
+        
 
         private void InitAndStartTimer()
         {

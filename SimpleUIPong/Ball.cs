@@ -44,7 +44,7 @@ namespace SimpleUIPong
             Vector b = Dir; 
             b.Normalize();
 
-            Vector newDir = Vector.Subtract(b, Vector.Multiply(2 * Utils.Dot(n, b), n));
+            Vector newDir = Vector.Subtract(b, Vector.Multiply(2 * Utils.DotProduct(n, b), n));
             this.Dir = Vector.Multiply(Constants.BALL_SPEED, newDir);
         }
 

@@ -25,5 +25,7 @@ namespace SimpleUIPong
         public static readonly Vector VEC_UP = new Vector(0, -1);
         public static readonly Vector VEC_DOWN = new Vector(0, 1);
         public static readonly Vector VEC_RIGHT = new Vector(1, 0);
+        public static readonly Vector VEC_LEFT = new Vector(-1, 0);
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.CodeDom;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -11,11 +12,16 @@ namespace SimpleUIPong
 
         public Rectangle Rect { get; set; }
 
+        public Vector Pos { get; set; }
 
         public Enemy(Canvas rootCanvas)
         {
             this.rootCanvas = rootCanvas;
             this.Rect = CreateEnemyRect();
+            this.Pos = new Vector(
+                 Constants.CANVAS_WIDTH - (double) this.Rect.GetValue(Canvas.RightProperty) - this.Rect.Width,
+                (double) this.Rect.GetValue(Canvas.TopProperty)
+            );
         }
 
         public Enemy(Canvas rootCanvas, Rectangle rect) : this(rootCanvas)
