@@ -16,12 +16,16 @@ namespace SimpleUIPong
         private Ball ball;
 
 
-        public Pong(Canvas rootCanvas)
+        private Label debugLabel;
+
+        public Pong(Canvas rootCanvas, Label debugLabel)
         {
             this.rootCanvas = rootCanvas;
             this.player = new Player(rootCanvas);
             this.enemy = new Enemy(rootCanvas);
             this.ball = new Ball(rootCanvas);
+
+            this.debugLabel = debugLabel;
 
             InitKeyHandlers();
             InitAndStartTimer();
@@ -32,6 +36,24 @@ namespace SimpleUIPong
         private void Run(object sender, EventArgs e)
         {
             ball.UpdatePosition();
+            CheckCollision();
+        }
+
+        private void CheckCollision()
+        {
+            CheckBorderCollision();
+        }
+
+        private void CheckBorderCollision()
+        {
+            debugLabel.Content = ball.Pos.Y;
+            // Top border
+            if (ball.Pos.Y < 0)
+                ball.Reflect(Constants.VEC_DOWN);
+
+            // Bottom border
+            if (ball.Pos.Y + ball.Rect.Height > Constants.CANVAS_HEIGHT)
+                ball.Reflect(Constants.VEC_UP);
         }
 
         private void InitAndStartTimer()

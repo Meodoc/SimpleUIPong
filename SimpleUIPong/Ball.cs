@@ -10,15 +10,15 @@ namespace SimpleUIPong
         private readonly Canvas rootCanvas;
 
         public Rectangle Rect { get; set; }
-        public Vector Dir { get; set; } = new Vector(-Constants.BALL_SPEED, 0);
+        public Vector Dir { get; set; } = new Vector(-Constants.BALL_SPEED, Constants.BALL_SPEED);
 
-        private Vector pos;
+        public Vector Pos { get; set; }
 
         public Ball(Canvas rootCanvas)
         {
             this.rootCanvas = rootCanvas;
             this.Rect = CreatePongBall();
-            this.pos = new Vector(
+            this.Pos = new Vector(
                 (double) this.Rect.GetValue(Canvas.LeftProperty),
                 (double) this.Rect.GetValue(Canvas.TopProperty)
             );
@@ -31,11 +31,21 @@ namespace SimpleUIPong
 
         public void UpdatePosition()
         {
-            this.pos.X += Dir.X;
-            this.pos.Y += Dir.Y;
+            this.Pos = new Vector(Pos.X + Dir.X, Pos.Y + Dir.Y);
 
-            this.Rect.SetValue(Canvas.LeftProperty, pos.X);
-            this.Rect.SetValue(Canvas.TopProperty, pos.Y);
+            this.Rect.SetValue(Canvas.LeftProperty, Pos.X);
+            this.Rect.SetValue(Canvas.TopProperty, Pos.Y);
+        }
+
+        public void Reflect(Vector normalVec)
+        {
+            Vector n = normalVec; 
+            n.Normalize();
+            Vector b = Dir; 
+            b.Normalize();
+
+            Vector newDir = Vector.Subtract(b, Vector.Multiply(2 * Utils.Dot(n, b), n));
+            this.Dir = Vector.Multiply(Constants.BALL_SPEED, newDir);
         }
 
         public Rectangle CreatePongBall()
