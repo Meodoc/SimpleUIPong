@@ -20,7 +20,7 @@ namespace SimpleUIPong
             InitializeRootCanvas();
             AddCanvasBorder();
 
-            new Pong(RootCanvas, Debug);
+            new Pong(RootCanvas, Debug, PlayerPos);
         }
 
         private void InitializeRootCanvas()

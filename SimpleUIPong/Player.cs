@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
@@ -10,11 +11,16 @@ namespace SimpleUIPong
 
         public Rectangle Rect { get; set; }
 
+        public Vector Pos { get; set; }
 
         public Player(Canvas rootCanvas)
         {
             this.rootCanvas = rootCanvas;
             this.Rect = CreatePlayerRect();
+            this.Pos = new Vector(
+                (double) this.Rect.GetValue(Canvas.LeftProperty),
+                (double) this.Rect.GetValue(Canvas.TopProperty)
+            );
         }
 
         public Player(Canvas rootCanvas, Rectangle rect) : this(rootCanvas)
@@ -44,6 +50,5 @@ namespace SimpleUIPong
             Canvas.SetLeft(rectangle, 20);
             return rectangle;
         }
-
     }
 }

@@ -17,8 +17,9 @@ namespace SimpleUIPong
 
 
         private Label debugLabel;
+        private Label playerPosLabel;
 
-        public Pong(Canvas rootCanvas, Label debugLabel)
+        public Pong(Canvas rootCanvas, Label debugLabel, Label playerPosLabel)
         {
             this.rootCanvas = rootCanvas;
             this.player = new Player(rootCanvas);
@@ -26,6 +27,7 @@ namespace SimpleUIPong
             this.ball = new Ball(rootCanvas);
 
             this.debugLabel = debugLabel;
+            this.playerPosLabel = playerPosLabel;
 
             InitKeyHandlers();
             InitAndStartTimer();
@@ -42,11 +44,12 @@ namespace SimpleUIPong
         private void CheckCollision()
         {
             CheckBorderCollision();
+            CheckPlayerCollision();
         }
+
 
         private void CheckBorderCollision()
         {
-            debugLabel.Content = ball.Pos.Y;
             // Top border
             if (ball.Pos.Y < 0)
                 ball.Reflect(Constants.VEC_DOWN);
@@ -54,6 +57,18 @@ namespace SimpleUIPong
             // Bottom border
             if (ball.Pos.Y + ball.Rect.Height > Constants.CANVAS_HEIGHT)
                 ball.Reflect(Constants.VEC_UP);
+        }
+
+        private void CheckPlayerCollision()
+        {
+            playerPosLabel.Content = "X: " + player.Pos.X + " Y: " + player.Pos.Y;
+
+            Boolean trigger1 = ball.Pos.X < player.Pos.X + player.Rect.Width;
+            debugLabel.Content = "Ball X trigger: " + trigger1;
+
+            if (ball.Pos.X < player.Pos.X + player.Rect.Width &&
+                ball.Pos.Y + ball.Rect.Height > player.Pos.Y && ball.Pos.Y < player.Pos.Y + player.Rect.Height)
+                ball.Reflect(Constants.VEC_RIGHT);
         }
 
         private void InitAndStartTimer()
@@ -72,12 +87,14 @@ namespace SimpleUIPong
         {
             if (e.Key == Key.Down)
             {
-                Canvas.SetTop(this.player.Rect, (double)this.player.Rect.GetValue(Canvas.TopProperty) + 10);
+                player.Pos = new Vector(player.Pos.X, player.Pos.Y + 10);
+                Canvas.SetTop(this.player.Rect, player.Pos.Y);
             }
 
             if (e.Key == Key.Up)
             {
-                Canvas.SetTop(this.player.Rect, (double)this.player.Rect.GetValue(Canvas.TopProperty) - 10);
+                player.Pos = new Vector(player.Pos.X, player.Pos.Y - 10);
+                Canvas.SetTop(this.player.Rect, player.Pos.Y);
             }
         }
     }

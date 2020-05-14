@@ -20,9 +20,10 @@ namespace SimpleUIPong
         public const int CANVAS_WIDTH = 700;
         public const int CANVAS_HEIGHT = 500;
 
-        public const int BALL_SPEED = 1;
+        public const int BALL_SPEED = 3;
 
         public static readonly Vector VEC_UP = new Vector(0, -1);
         public static readonly Vector VEC_DOWN = new Vector(0, 1);
+        public static readonly Vector VEC_RIGHT = new Vector(1, 0);
     }
 }
