@@ -10,16 +10,18 @@ namespace SimpleUIPong
     public class Pong
     {
         private readonly Canvas rootCanvas;
+
+        private DispatcherTimer timer = new DispatcherTimer {Interval = TimeSpan.FromMilliseconds(Constants.REFRESH_RATE)};
         
         private Player player;
         private Enemy enemy;
         private Ball ball;
 
-
         private Label debugLabel;
         private Label playerPosLabel;
+        private Label winnerMsgLabel;
 
-        public Pong(Canvas rootCanvas, Label debugLabel, Label playerPosLabel)
+        public Pong(Canvas rootCanvas, Label debugLabel, Label playerPosLabel, Label winnerMsgLabel)
         {
             this.rootCanvas = rootCanvas;
             this.player = new Player(rootCanvas);
@@ -28,6 +30,7 @@ namespace SimpleUIPong
 
             this.debugLabel = debugLabel;
             this.playerPosLabel = playerPosLabel;
+            this.winnerMsgLabel = winnerMsgLabel;
 
             InitKeyHandlers();
             InitAndStartTimer();
@@ -92,13 +95,24 @@ namespace SimpleUIPong
             // Bottom border
             if (ball.Pos.Y + ball.Rect.Height > Constants.CANVAS_HEIGHT)
                 ball.Reflect(Constants.VEC_UP);
+
+            // Left border
+            if (ball.Pos.Y < 0)
+                StopTimerAndFinishGame(false);
+
+            // Right border
+            if (ball.Pos.Y + ball.Rect.Width > Constants.CANVAS_WIDTH)
+                StopTimerAndFinishGame(true);
         }
 
-        
+        private void StopTimerAndFinishGame(Boolean won)
+        {
+            timer.Stop();
+
+        }
 
         private void InitAndStartTimer()
         {
-            DispatcherTimer timer = new DispatcherTimer {Interval = TimeSpan.FromMilliseconds(Constants.REFRESH_RATE)};
             timer.Tick += Run;
             timer.Start();
         }

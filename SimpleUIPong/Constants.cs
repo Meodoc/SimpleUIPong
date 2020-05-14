@@ -17,6 +17,9 @@ namespace SimpleUIPong
 
         public const int BALL_LENGTH = 15;
 
+        public const int WINDOW_WIDTH = 800;
+        public const int WINDOW_HEIGHT = 600;
+
         public const int CANVAS_WIDTH = 700;
         public const int CANVAS_HEIGHT = 500;
 

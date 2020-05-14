@@ -5,13 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleUIPong"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="750">
+        Title="MainWindow" 
+        Height="{Binding Source={x:Static local:Constants.WINDOW_HEIGHT}}" 
+        Width="{Binding Source={x:Static local:Constants.WINDOW_WIDTH}}">
 
 
-    <Canvas x:Name="RootCanvas" >
-        <Label x:Name="PlayerPos" Margin="0, 0, 0, 0"></Label>
-        <Label x:Name="Debug" Margin="0, 20, 0, 0"></Label>
-    </Canvas>
+    <Border BorderBrush="Black" 
+            BorderThickness="1" 
+            Height ="{Binding Source={x:Static local:Constants.CANVAS_HEIGHT}}"
+            Width="{Binding Source={x:Static local:Constants.CANVAS_WIDTH}}">
+        <Canvas x:Name="RootCanvas"
+                Height="{Binding Source={x:Static local:Constants.CANVAS_HEIGHT}}"
+                Width="{Binding Source={x:Static local:Constants.CANVAS_WIDTH}}"
+                Focusable="True">
+            <Label x:Name="PlayerPos" Margin="0, 0, 0, 0"></Label>
+            <Label x:Name="Debug" Margin="0, 20, 0, 0"></Label>
+            <Label x:Name="WinnerMessage"></Label>
+        </Canvas>
+    </Border>
+    
     <!-->
     <Grid>
         <Rectangle Fill="Blue" Stroke="Black" StrokeThickness="4" Margin="37,75,453,120" />

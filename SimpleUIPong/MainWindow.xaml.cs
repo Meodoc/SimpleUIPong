@@ -17,31 +17,9 @@ namespace SimpleUIPong
         public MainWindow()
         {
             InitializeComponent();
-            InitializeRootCanvas();
-            AddCanvasBorder();
 
-            new Pong(RootCanvas, Debug, PlayerPos);
-        }
-
-        private void InitializeRootCanvas()
-        {
-            RootCanvas.Width = Constants.CANVAS_WIDTH;
-            RootCanvas.Height = Constants.CANVAS_HEIGHT;
-            RootCanvas.Background = Brushes.Transparent;
-            RootCanvas.Focusable = true;
             RootCanvas.Focus();
-        }
-
-
-        public void AddCanvasBorder()
-        {
-            Rectangle border = new Rectangle {Width = Constants.CANVAS_WIDTH, Height = Constants.CANVAS_HEIGHT};
-            SolidColorBrush blackBrush = new SolidColorBrush {Color = Colors.Black};
-            border.StrokeThickness = 1;
-            border.Stroke = blackBrush;
-            RootCanvas.Children.Add(border);
-            Canvas.SetTop(border, 0);
-            Canvas.SetLeft(border, 0);
+            new Pong(RootCanvas, Debug, PlayerPos, WinnerMessage);
         }
     }
 }
