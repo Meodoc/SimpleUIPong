@@ -29,6 +29,7 @@ namespace SimpleUIPong
         public const int WIN_LABEL_WIDTH = 100;
         public const int WIN_LABEL_FONTSIZE = 20;
 
+        public const int PLAYER_SPEED = 5;
         public const int BALL_SPEED = 3;
 
         public static readonly Vector VEC_UP = new Vector(0, -1);

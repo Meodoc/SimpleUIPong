@@ -40,13 +40,23 @@ namespace SimpleUIPong
             // TODO: clamp player movement
             // TODO: smooth player movement
             // TODO: dynamic margin!
+
+            // TODO: bug when ball enters from the side
+            // TODO: keymap to handle simultaneous key inputs
         }
 
         private void Run(object sender, EventArgs e)
         {
             ball.UpdatePosition();
+            player.UpdatePosition();
+            //UpdatePlayerPosition();
             UpdateEnemyPosition();
             HandleCollisions();
+        }
+
+        private void UpdatePlayerPosition()
+        {
+            throw new NotImplementedException();
         }
 
         // Moves the enemy when ball is out of enemy range
@@ -120,22 +130,23 @@ namespace SimpleUIPong
 
         private void InitKeyHandlers()
         {
-            this.rootCanvas.KeyDown += PlayerMovementHandler;
+            this.rootCanvas.KeyDown += PlayerStartMovementHandler;
+            this.rootCanvas.KeyUp += PlayerStopMovementHandler;
         }
 
-        private void PlayerMovementHandler(object sender, KeyEventArgs e)
+        private void PlayerStartMovementHandler(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Down)
-            {
-                player.UpdatePosition(10);
-                Canvas.SetTop(this.player.Rect, player.Pos.Y);
-            }
+                player.Move = MoveDir.DOWN;
 
             if (e.Key == Key.Up)
-            {
-                player.UpdatePosition(-10);
-                Canvas.SetTop(this.player.Rect, player.Pos.Y);
-            }
+                player.Move = MoveDir.UP;
+        }
+
+        private void PlayerStopMovementHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Down || e.Key == Key.Up)
+                player.Move = MoveDir.IDLE;
         }
     }
 }

@@ -1,6 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SimpleUIPong
@@ -12,6 +15,8 @@ namespace SimpleUIPong
         public Rectangle Rect { get; set; }
 
         public Vector Pos { get; set; }
+
+        public MoveDir Move { get; set; }
 
         public Player(Canvas rootCanvas)
         {
@@ -28,9 +33,19 @@ namespace SimpleUIPong
             this.Rect = rect;
         }
 
-        public void UpdatePosition(double y)
+        public void UpdatePosition()
         {
-            this.Pos = new Vector(Pos.X, Pos.Y + y);
+            switch (Move)
+            {
+                case MoveDir.UP: 
+                    this.Pos = new Vector(Pos.X, Pos.Y - Constants.PLAYER_SPEED);
+                    break;
+                case MoveDir.DOWN:
+                    this.Pos = new Vector(Pos.X, Pos.Y + Constants.PLAYER_SPEED);
+                    break;
+                default:
+                    return;
+            }
 
             this.Rect.SetValue(Canvas.LeftProperty, Pos.X);
             this.Rect.SetValue(Canvas.TopProperty, Pos.Y);
