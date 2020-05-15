@@ -19,25 +19,17 @@ namespace SimpleUIPong
         public MainWindow()
         {
             InitializeComponent();
+            new Pong(this, RootCanvas, Debug, PlayerPos, WinnerMessage);
+        }
 
-            RootCanvas.Focus();
-            new Pong(RootCanvas, Debug, PlayerPos, WinnerMessage);
+        public void AddKeyUpListener(KeyEventHandler listener)
+        {
+            KeyUp += listener;
+        }
+
+        public void AddKeyDownListener(KeyEventHandler listener)
+        {
+            KeyDown += listener;
         }
     }
-
-    //class MultiMarginConverter : IMultiValueConverter
-    //{
-    //    public object Convert(object[] values, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
-    //    {
-    //        return new Thickness(System.Convert.ToDouble(values[0]),
-    //            System.Convert.ToDouble(values[1]),
-    //            System.Convert.ToDouble(values[2]),
-    //            System.Convert.ToDouble(values[3]));
-    //    }
-
-    //    public object[] ConvertBack(object value, System.Type[] targetType, object parameter, System.Globalization.CultureInfo culture)
-    //    {
-    //        return null;
-    //    }
-    //}
 }

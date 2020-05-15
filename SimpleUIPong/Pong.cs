@@ -7,6 +7,7 @@ namespace SimpleUIPong
 {
     public class Pong
     {
+        private readonly MainWindow mainWindow;
         private readonly Canvas rootCanvas;
 
         private readonly DispatcherTimer timer = new DispatcherTimer {Interval = TimeSpan.FromMilliseconds(Constants.REFRESH_RATE)};
@@ -19,8 +20,9 @@ namespace SimpleUIPong
         private Label playerPosLabel;
         private readonly Label winnerMsgLabel;
 
-        public Pong(Canvas rootCanvas, Label debugLabel, Label playerPosLabel, Label winnerMsgLabel)
+        public Pong(MainWindow mainWindow, Canvas rootCanvas, Label debugLabel, Label playerPosLabel, Label winnerMsgLabel)
         {
+            this.mainWindow = mainWindow;
             this.rootCanvas = rootCanvas;
             this.player = new Player(rootCanvas);
             this.enemy = new Enemy(rootCanvas);
@@ -60,8 +62,8 @@ namespace SimpleUIPong
 
         private void InitKeyHandlers()
         {
-            this.rootCanvas.KeyDown += PlayerStartMovementHandler;
-            this.rootCanvas.KeyUp += PlayerStopMovementHandler;
+            mainWindow.AddKeyDownListener(PlayerStartMovementHandler);
+            mainWindow.AddKeyUpListener(PlayerStopMovementHandler);
         }
 
         private void PlayerStartMovementHandler(object sender, KeyEventArgs e)
@@ -88,9 +90,6 @@ namespace SimpleUIPong
 
         private void HandlePlayerCollision()
         {
-            //playerPosLabel.Content = "X: " + ball.Pos.X + " Y: " + ball.Pos.Y;
-            //debugLabel.Content = "Player Y + rect.Height: " + player.Pos.Y + player.Rect.Height;
-
             if (!CollidesWithPlayer()) return;
 
             switch (GetPlayerCollisionSide())
