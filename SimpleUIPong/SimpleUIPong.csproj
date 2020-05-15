@@ -53,6 +53,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ElementTemplates.cs" />
     <Compile Include="MoveDir.cs" />
     <Compile Include="Utils.cs" />
     <Page Include="MainWindow.xaml">

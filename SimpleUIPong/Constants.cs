@@ -16,6 +16,7 @@ namespace SimpleUIPong
 
         public const int PLAYER_WIDTH = 20;
         public const int PLAYER_HEIGHT = 200;
+        public const int PLAYER_SIDE_MARGIN = 20;
 
         public const int BALL_LENGTH = 15;
 

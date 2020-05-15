@@ -30,4 +30,19 @@ namespace SimpleUIPong
             return null;
         }
     }
+
+    public class PlayerEnemyCanvasTopConverter : IValueConverter
+    {
+        public object Convert(object value, System.Type targetType, object parameter,
+            System.Globalization.CultureInfo culture)
+        {
+            return Constants.CANVAS_HEIGHT / 2 - Constants.PLAYER_HEIGHT / 2;
+        }
+
+        public object ConvertBack(object value, System.Type targetType, object parameter,
+            System.Globalization.CultureInfo culture)
+        {
+            return null;
+        }
+    }
 }

@@ -17,16 +17,11 @@ namespace SimpleUIPong
         public Enemy(Canvas rootCanvas)
         {
             this.rootCanvas = rootCanvas;
-            this.Rect = CreateEnemyRect();
+            this.Rect = InitEnemyRect();
             this.Pos = new Vector(
                  Constants.CANVAS_WIDTH - (double) this.Rect.GetValue(Canvas.RightProperty) - this.Rect.Width,
                 (double) this.Rect.GetValue(Canvas.TopProperty)
             );
-        }
-
-        public Enemy(Canvas rootCanvas, Rectangle rect) : this(rootCanvas)
-        {
-            this.Rect = rect;
         }
 
         public void UpdatePosition(double y)
@@ -37,22 +32,9 @@ namespace SimpleUIPong
             this.Rect.SetValue(Canvas.TopProperty, Pos.Y);
         }
 
-        public Rectangle CreateEnemyRect()
+        private Rectangle InitEnemyRect()
         {
-            Rectangle rectangle = new Rectangle {Height = Constants.PLAYER_HEIGHT, Width = Constants.PLAYER_WIDTH};
-
-            // Create brushes
-            SolidColorBrush redBrush = new SolidColorBrush {Color = Colors.Red};
-            SolidColorBrush blackBrush = new SolidColorBrush {Color = Colors.Black};
-
-            // Set stroke
-            rectangle.StrokeThickness = 2;
-            rectangle.Stroke = blackBrush;
-
-            // Fill rectangle with blue color  
-            rectangle.Fill = redBrush;
-
-            // Add Rectangle to the Grid.  
+            Rectangle rectangle = ElementTemplates.CreateEnemyRect();
             rootCanvas.Children.Add(rectangle);
             Canvas.SetTop(rectangle, Constants.CANVAS_HEIGHT / 2 - rectangle.Height / 2);
             Canvas.SetRight(rectangle, 20);

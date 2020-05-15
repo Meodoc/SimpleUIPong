@@ -13,6 +13,7 @@
 
     <Window.Resources>
         <local:MarginConverter x:Key="MarginConverter"></local:MarginConverter>
+        <local:PlayerEnemyCanvasTopConverter x:Key="PlayerEnemyCanvasTopConverter"></local:PlayerEnemyCanvasTopConverter>
     </Window.Resources>
 
     <Border BorderBrush="Black" 
@@ -24,6 +25,30 @@
                 Height="{Binding Source={x:Static local:Constants.CANVAS_HEIGHT}}"
                 Width="{Binding Source={x:Static local:Constants.CANVAS_WIDTH}}"
                 Focusable="True">
+            <!-->
+            <Rectangle
+                x:Name="PlayerRect"
+                Height="{Binding Source={x:Static local:Constants.PLAYER_HEIGHT}}"
+                Width="{Binding Source={x:Static local:Constants.PLAYER_WIDTH}}"
+                Stroke ="Black"
+                StrokeThickness="2"
+                Fill="Blue"
+                Canvas.Top="{Binding Converter={StaticResource PlayerEnemyCanvasTopConverter}}"
+                Canvas.Left="{Binding Source={x:Static local:Constants.PLAYER_SIDE_MARGIN}}">
+            </Rectangle>
+
+            <Rectangle
+                x:Name="EnemyRect"
+                Height="{Binding Source={x:Static local:Constants.PLAYER_HEIGHT}}"
+                Width="{Binding Source={x:Static local:Constants.PLAYER_WIDTH}}"
+                Stroke ="Black"
+                StrokeThickness="2"
+                Fill="Red"
+                Canvas.Top="{Binding Converter={StaticResource PlayerEnemyCanvasTopConverter}}"
+                Canvas.Right="{Binding Source={x:Static local:Constants.PLAYER_SIDE_MARGIN}}">
+            </Rectangle>
+            </-->
+
             <Label x:Name="PlayerPos" Margin="0, 0, 0, 0"></Label>
             <Label x:Name="Debug" Margin="0, 20, 0, 0"></Label>
             <Label x:Name="WinnerMessage"
@@ -32,6 +57,7 @@
                    FontSize="{Binding Source={x:Static local:Constants.WIN_LABEL_FONTSIZE}}"
                    Margin = "{Binding Converter={StaticResource MarginConverter}}">
             </Label>
+
         </Canvas>
 
     </Border>
