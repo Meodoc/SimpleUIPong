@@ -24,6 +24,29 @@ namespace SimpleUIPong
             );
         }
 
+        public void UpdatePosition(Ball ball)
+        {
+            if (BallIsAbove(ball))
+                this.Pos = new Vector(Pos.X, Pos.Y - Constants.ENEMY_SPEED);
+            else if (BallIsBelow(ball))
+                this.Pos = new Vector(Pos.X, Pos.Y + Constants.ENEMY_SPEED);
+            else
+                return;
+
+            this.Rect.SetValue(Canvas.LeftProperty, Pos.X);
+            this.Rect.SetValue(Canvas.TopProperty, Pos.Y);
+        }
+
+        private bool BallIsAbove(Ball ball)
+        {
+            return ball.Pos.Y + ball.Rect.Width < this.Pos.Y - 10;
+        }
+
+        private bool BallIsBelow(Ball ball)
+        {
+            return ball.Pos.Y > this.Pos.Y + this.Rect.Height + 10;
+        }
+
         public void UpdatePosition(double y)
         {
             this.Pos = new Vector(Pos.X, Pos.Y + y);

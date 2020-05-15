@@ -49,7 +49,7 @@ namespace SimpleUIPong
         {
             ball.UpdatePosition();
             player.UpdatePosition();
-            UpdateEnemyPosition();
+            enemy.UpdatePosition(ball);
             HandleCollisions();
         }
 
