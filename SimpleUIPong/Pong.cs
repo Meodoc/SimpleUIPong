@@ -53,9 +53,9 @@ namespace SimpleUIPong
         private void UpdateEnemyPosition()
         {
             // "Think" delay and slower movement than framerate
-            if (ball.Pos.Y + ball.Rect.Width < enemy.Pos.Y)
+            if (ball.Pos.Y + ball.Rect.Width < enemy.Pos.Y - 10)
                 enemy.UpdatePosition(-10);
-            else if (ball.Pos.Y > enemy.Pos.Y + enemy.Rect.Height)
+            else if (ball.Pos.Y > enemy.Pos.Y + enemy.Rect.Height + 10)
                 enemy.UpdatePosition(10);
         }
 

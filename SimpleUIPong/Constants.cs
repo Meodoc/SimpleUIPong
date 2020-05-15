@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
+using System.Windows.Media.Animation;
 
 namespace SimpleUIPong
 {
@@ -27,17 +29,31 @@ namespace SimpleUIPong
         public const int WIN_LABEL_WIDTH = 100;
         public const int WIN_LABEL_FONTSIZE = 20;
 
-        //public static readonly string WIN_LABEL_MARGIN = String.Format("{CANVAS_WIDTH / 2 - WIN_LABEL_WIDTH / 2} {CANVAS_HEIGHT / 2 - WIN_LABEL_HEIGHT / 2}");
-        //public static readonly Thickness WIN_LABEL_MARGIN = new Thickness(CANVAS_WIDTH / 2 - WIN_LABEL_WIDTH / 2, CANVAS_HEIGHT / 2 - WIN_LABEL_HEIGHT / 2, 0, 0);
-
-
-
         public const int BALL_SPEED = 3;
 
         public static readonly Vector VEC_UP = new Vector(0, -1);
         public static readonly Vector VEC_DOWN = new Vector(0, 1);
         public static readonly Vector VEC_RIGHT = new Vector(1, 0);
         public static readonly Vector VEC_LEFT = new Vector(-1, 0);
+    }
 
+    public class MarginConverter : IValueConverter
+    {
+        public object Convert(object value, System.Type targetType, object parameter,
+            System.Globalization.CultureInfo culture)
+        {
+            return new Thickness(
+                Constants.CANVAS_WIDTH / 2 - Constants.WIN_LABEL_WIDTH / 2,
+                Constants.CANVAS_HEIGHT / 2 - Constants.WIN_LABEL_HEIGHT / 2,
+                0,
+                0
+            );
+        }
+
+        public object ConvertBack(object value, System.Type targetType, object parameter,
+            System.Globalization.CultureInfo culture)
+        {
+            return null;
+        }
     }
 }

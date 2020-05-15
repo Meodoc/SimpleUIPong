@@ -4,11 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleUIPong"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="{Binding Source={x:Static local:Constants.WINDOW_HEIGHT}}" 
         Width="{Binding Source={x:Static local:Constants.WINDOW_WIDTH}}">
 
+
+    <Window.Resources>
+        <local:MarginConverter x:Key="MarginConverter"></local:MarginConverter>
+    </Window.Resources>
 
     <Border BorderBrush="Black" 
             BorderThickness="1" 
@@ -25,7 +30,7 @@
                    Width="{Binding Source={x:Static local:Constants.WIN_LABEL_WIDTH}}"
                    Height="{Binding Source={x:Static local:Constants.WIN_LABEL_HEIGHT}}"
                    FontSize="{Binding Source={x:Static local:Constants.WIN_LABEL_FONTSIZE}}"
-                   Margin="300, 225, 0, 0">
+                   Margin = "{Binding Converter={StaticResource MarginConverter}}">
             </Label>
         </Canvas>
 
