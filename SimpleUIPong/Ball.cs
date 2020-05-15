@@ -8,9 +8,15 @@ namespace SimpleUIPong
     public class Ball
     {
         private readonly Canvas rootCanvas;
+        private Vector dir = new Vector(-Constants.BALL_SPEED, Constants.BALL_SPEED);
 
         public Rectangle Rect { get; set; }
-        public Vector Dir { get; set; } = new Vector(-Constants.BALL_SPEED, Constants.BALL_SPEED);
+
+        public Vector Dir
+        {
+            get => dir;
+            set => dir = Vector.Multiply(Constants.BALL_SPEED, value);
+        }
 
         public Vector Pos { get; set; }
 
@@ -39,8 +45,8 @@ namespace SimpleUIPong
             Vector b = Dir; 
             b.Normalize();
 
-            Vector newDir = Vector.Subtract(b, Vector.Multiply(2 * Utils.DotProduct(n, b), n));
-            this.Dir = Vector.Multiply(Constants.BALL_SPEED, newDir);
+            this.Dir = Vector.Subtract(b, Vector.Multiply(2 * Utils.DotProduct(n, b), n));
+            //this.Dir = Vector.Multiply(Constants.BALL_SPEED, newDir);
         }
 
         public void SetX(double x)

@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Runtime.InteropServices;
+using System.Windows;
 using System.Windows.Data;
 
 namespace SimpleUIPong
@@ -9,7 +11,34 @@ namespace SimpleUIPong
         {
             return v1.X * v2.X + v1.Y * v2.Y;
         }
+
+        public static Vector GenerateRandomDirectionVector(Dir dir)
+        {
+            Random r = new Random();
+            double angle = ToRad(r.Next(-Constants.RANDOM_VEC_ANGLE, Constants.RANDOM_VEC_ANGLE));
+            
+            switch (dir)
+            {
+                case Dir.LEFT:
+                    Vector v = new Vector(-Math.Cos(angle), Math.Sin(angle));
+                    v.Normalize();
+                    return v;
+                case Dir.RIGHT:
+                    v = new Vector(Math.Cos(angle), Math.Sin(angle));
+                    v.Normalize();
+                    return v;
+                default:
+                    throw new InvalidOperationException();
+            }
+        }
+
+        public static double ToRad(double angle)
+        {
+            return (Math.PI / 180) * angle;
+        }
     }
+
+
 
     public class MarginConverter : IValueConverter
     {

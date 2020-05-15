@@ -54,6 +54,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CollisionSide.cs" />
+    <Compile Include="Dir.cs" />
     <Compile Include="ElementTemplates.cs" />
     <Compile Include="MoveDir.cs" />
     <Compile Include="Utils.cs" />
