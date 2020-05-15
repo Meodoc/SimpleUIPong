@@ -60,7 +60,7 @@ namespace SimpleUIPong
             Rectangle rectangle = WpfElementTemplates.CreatePlayerRect();
             rootCanvas.Children.Add(rectangle);
             Canvas.SetTop(rectangle, Constants.CANVAS_HEIGHT / 2 - rectangle.Height / 2);
-            Canvas.SetLeft(rectangle, 20);
+            Canvas.SetLeft(rectangle, Constants.PLAYER_SIDE_MARGIN);
             return rectangle;
         }
     }

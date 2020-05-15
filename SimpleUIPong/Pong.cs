@@ -32,11 +32,12 @@ namespace SimpleUIPong
             this.retryMsgLabel = retryMsgLabel;
 
             InitKeyHandlers();
-            InitAndStartTimer();
+            retryMsgLabel.Content = "Press ENTER to start";
         }
 
         private void Run(object sender, EventArgs e)
         {
+            retryMsgLabel.Content = "";
             ball.UpdatePosition();
             player.UpdatePosition();
             enemy.UpdatePosition(ball);
@@ -81,13 +82,13 @@ namespace SimpleUIPong
         private void RetryHandler(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
-            {
                 Reset();
-            }
+
         }
 
         private void Reset()
         {
+            this.timer.Stop();
             this.timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(Constants.REFRESH_RATE) };
             winnerMsgLabel.Content = "";
             retryMsgLabel.Content = "";
