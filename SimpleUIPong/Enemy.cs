@@ -47,14 +47,6 @@ namespace SimpleUIPong
             return ball.Pos.Y > this.Pos.Y + this.Rect.Height + 10;
         }
 
-        public void UpdatePosition(double y)
-        {
-            this.Pos = new Vector(Pos.X, Pos.Y + y);
-
-            this.Rect.SetValue(Canvas.LeftProperty, Pos.X);
-            this.Rect.SetValue(Canvas.TopProperty, Pos.Y);
-        }
-
         private Rectangle InitEnemyRect()
         {
             Rectangle rectangle = ElementTemplates.CreateEnemyRect();
