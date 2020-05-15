@@ -47,9 +47,16 @@ namespace SimpleUIPong
         {
             this.Pos = new Vector(x, Pos.Y);
         }
+
         public void SetY(double y)
         {
             this.Pos = new Vector(Pos.X, y);
+        }
+
+        public void UpdateX(double x)
+        {
+            this.SetX(x);
+            this.Rect.SetValue(Canvas.LeftProperty, Pos.X);
         }
 
         public Rectangle CreatePongBall()

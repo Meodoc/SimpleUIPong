@@ -151,11 +151,19 @@ namespace SimpleUIPong
 
             // Left border
             if (ball.Pos.X < 0)
+            {
+                ball.UpdateX(0);
                 StopTimerAndFinishGame(false);
+            }
+
 
             // Right border
             if (ball.Pos.X + ball.Rect.Width > Constants.CANVAS_WIDTH)
+            {
+                ball.UpdateX(Constants.CANVAS_WIDTH - ball.Rect.Width);
                 StopTimerAndFinishGame(true);
+            }
+
         }
 
         private CollisionSide GetPlayerCollisionSide()
