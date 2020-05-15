@@ -8,7 +8,7 @@ namespace SimpleUIPong
     public class Ball
     {
         private readonly Canvas rootCanvas;
-        private Vector dir = new Vector(-Constants.BALL_SPEED, Constants.BALL_SPEED);
+        private Vector dir;
 
         public Rectangle Rect { get; set; }
 
@@ -28,6 +28,7 @@ namespace SimpleUIPong
                 (double) this.Rect.GetValue(Canvas.LeftProperty),
                 (double) this.Rect.GetValue(Canvas.TopProperty)
             );
+            this.Dir = Utils.RandDirVecInRange(SimpleUIPong.Dir.LEFT, Constants.RANDOM_VEC_ANGLE);
         }
 
         public void UpdatePosition()
@@ -46,7 +47,6 @@ namespace SimpleUIPong
             b.Normalize();
 
             this.Dir = Vector.Subtract(b, Vector.Multiply(2 * Utils.DotProduct(n, b), n));
-            //this.Dir = Vector.Multiply(Constants.BALL_SPEED, newDir);
         }
 
         public void SetX(double x)
