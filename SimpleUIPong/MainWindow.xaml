@@ -26,6 +26,9 @@
                 Height="{Binding Source={x:Static local:Constants.CANVAS_HEIGHT}}"
                 Width="{Binding Source={x:Static local:Constants.CANVAS_WIDTH}}"
                 Focusable="True">
+            <Canvas.Background>
+                <ImageBrush ImageSource="test_background.png" />
+            </Canvas.Background>
             <!-->
             <Rectangle
                 x:Name="PlayerRect"
