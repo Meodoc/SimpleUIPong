@@ -24,11 +24,6 @@ namespace SimpleUIPong
             );
         }
 
-        public Ball(Canvas rootCanvas, Rectangle rect) : this(rootCanvas)
-        {
-            this.Rect = rect;
-        }
-
         public void UpdatePosition()
         {
             this.Pos = new Vector(Pos.X + Dir.X, Pos.Y + Dir.Y);
