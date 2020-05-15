@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:SimpleUIPong"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" 
+        Title="MainWindow"
         Height="{Binding Source={x:Static local:Constants.WINDOW_HEIGHT}}" 
-        Width="{Binding Source={x:Static local:Constants.WINDOW_WIDTH}}">
+        Width="{Binding Source={x:Static local:Constants.WINDOW_WIDTH}}"
+        ResizeMode="NoResize">
 
 
     <Window.Resources>
