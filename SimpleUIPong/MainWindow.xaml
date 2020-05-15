@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:SimpleUIPong"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="Pong"
+        Icon="icon.ico"
         Height="{Binding Source={x:Static local:Constants.WINDOW_HEIGHT}}" 
         Width="{Binding Source={x:Static local:Constants.WINDOW_WIDTH}}"
         ResizeMode="NoResize">
@@ -27,7 +28,7 @@
                 Width="{Binding Source={x:Static local:Constants.CANVAS_WIDTH}}"
                 Focusable="True">
             <Canvas.Background>
-                <ImageBrush ImageSource="test_background.png" />
+                <ImageBrush ImageSource="background.png" />
             </Canvas.Background>
             <!-->
             <Rectangle
