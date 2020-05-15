@@ -49,14 +49,8 @@ namespace SimpleUIPong
         {
             ball.UpdatePosition();
             player.UpdatePosition();
-            //UpdatePlayerPosition();
             UpdateEnemyPosition();
             HandleCollisions();
-        }
-
-        private void UpdatePlayerPosition()
-        {
-            throw new NotImplementedException();
         }
 
         // Moves the enemy when ball is out of enemy range
@@ -67,6 +61,39 @@ namespace SimpleUIPong
                 enemy.UpdatePosition(-10);
             else if (ball.Pos.Y > enemy.Pos.Y + enemy.Rect.Height + 10)
                 enemy.UpdatePosition(10);
+        }
+
+        private void StopTimerAndFinishGame(bool won)
+        {
+            timer.Stop();
+            winnerMsgLabel.Content = won ? "YOU WON" : "YOU LOST";
+        }
+
+        private void InitAndStartTimer()
+        {
+            timer.Tick += Run;
+            timer.Start();
+        }
+
+        private void InitKeyHandlers()
+        {
+            this.rootCanvas.KeyDown += PlayerStartMovementHandler;
+            this.rootCanvas.KeyUp += PlayerStopMovementHandler;
+        }
+
+        private void PlayerStartMovementHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Down)
+                player.Move = MoveDir.DOWN;
+
+            if (e.Key == Key.Up)
+                player.Move = MoveDir.UP;
+        }
+
+        private void PlayerStopMovementHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Down || e.Key == Key.Up)
+                player.Move = MoveDir.IDLE;
         }
 
         private void HandleCollisions()
@@ -114,39 +141,6 @@ namespace SimpleUIPong
             // Right border
             if (ball.Pos.X + ball.Rect.Width > Constants.CANVAS_WIDTH)
                 StopTimerAndFinishGame(true);
-        }
-
-        private void StopTimerAndFinishGame(bool won)
-        {
-            timer.Stop();
-            winnerMsgLabel.Content = won ? "YOU WON" : "YOU LOST";
-        }
-
-        private void InitAndStartTimer()
-        {
-            timer.Tick += Run;
-            timer.Start();
-        }
-
-        private void InitKeyHandlers()
-        {
-            this.rootCanvas.KeyDown += PlayerStartMovementHandler;
-            this.rootCanvas.KeyUp += PlayerStopMovementHandler;
-        }
-
-        private void PlayerStartMovementHandler(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Down)
-                player.Move = MoveDir.DOWN;
-
-            if (e.Key == Key.Up)
-                player.Move = MoveDir.UP;
-        }
-
-        private void PlayerStopMovementHandler(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Down || e.Key == Key.Up)
-                player.Move = MoveDir.IDLE;
         }
     }
 }
