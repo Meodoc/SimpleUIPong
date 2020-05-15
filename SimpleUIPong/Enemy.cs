@@ -58,12 +58,11 @@ namespace SimpleUIPong
 
         private Rectangle InitEnemyRect()
         {
-            Rectangle rectangle = ElementTemplates.CreateEnemyRect();
+            Rectangle rectangle = WpfElementTemplates.CreateEnemyRect();
             rootCanvas.Children.Add(rectangle);
             Canvas.SetTop(rectangle, Constants.CANVAS_HEIGHT / 2 - rectangle.Height / 2);
             Canvas.SetRight(rectangle, 20);
             return rectangle;
         }
-
     }
 }

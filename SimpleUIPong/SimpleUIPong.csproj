@@ -55,7 +55,7 @@
     </ApplicationDefinition>
     <Compile Include="CollisionSide.cs" />
     <Compile Include="Dir.cs" />
-    <Compile Include="ElementTemplates.cs" />
+    <Compile Include="WpfElementTemplates.cs" />
     <Compile Include="MoveDir.cs" />
     <Compile Include="Utils.cs" />
     <Page Include="MainWindow.xaml">
