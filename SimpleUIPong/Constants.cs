@@ -12,11 +12,11 @@ namespace SimpleUIPong
 
         public const int BALL_LENGTH = 15;
 
-        public const int WINDOW_WIDTH = 800;
-        public const int WINDOW_HEIGHT = 600;
+        public const int WINDOW_WIDTH = 1200;
+        public const int WINDOW_HEIGHT = 800;
 
-        public const int CANVAS_WIDTH = 700;
-        public const int CANVAS_HEIGHT = 500;
+        public const int CANVAS_WIDTH = 1185;
+        public const int CANVAS_HEIGHT = 760;
 
         public const int WIN_LABEL_HEIGHT = 50;
         public const int WIN_LABEL_WIDTH = 150;

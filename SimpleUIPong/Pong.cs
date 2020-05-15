@@ -88,8 +88,8 @@ namespace SimpleUIPong
 
         private void HandlePlayerCollision()
         {
-            playerPosLabel.Content = "X: " + ball.Pos.X + " Y: " + ball.Pos.Y;
-            debugLabel.Content = "Player Y + rect.Height: " + player.Pos.Y + player.Rect.Height;
+            //playerPosLabel.Content = "X: " + ball.Pos.X + " Y: " + ball.Pos.Y;
+            //debugLabel.Content = "Player Y + rect.Height: " + player.Pos.Y + player.Rect.Height;
 
             if (!CollidesWithPlayer()) return;
 
