@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.CodeDom;
+using System.Windows;
 
 namespace SimpleUIPong
 {
@@ -24,7 +25,10 @@ namespace SimpleUIPong
 
         public const double PLAYER_SPEED = 5;
         public const int ENEMY_SPEED = 5;
-        public const double BALL_SPEED = 5;
+        public const double BALL_SPEED = 10;
+
+        // Specifies the reaction difference threshold between ball and enemy rectangle edge
+        public const int ENEMY_SMARTNESS = 50;
 
         // Angle of random reflection vector on player or enemy in degrees (half angle)
         public const int RANDOM_VEC_ANGLE = 45;

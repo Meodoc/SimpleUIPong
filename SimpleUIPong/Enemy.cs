@@ -48,12 +48,12 @@ namespace SimpleUIPong
 
         private bool BallIsAbove(Ball ball)
         {
-            return ball.Pos.Y + ball.Rect.Width < this.Pos.Y - 10;
+            return ball.Pos.Y + ball.Rect.Height < this.Pos.Y + Constants.ENEMY_SMARTNESS;
         }
 
         private bool BallIsBelow(Ball ball)
         {
-            return ball.Pos.Y > this.Pos.Y + this.Rect.Height + 10;
+            return ball.Pos.Y > this.Pos.Y + this.Rect.Height - Constants.ENEMY_SMARTNESS;
         }
 
         private Rectangle InitEnemyRect()
