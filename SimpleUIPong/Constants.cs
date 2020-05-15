@@ -36,24 +36,4 @@ namespace SimpleUIPong
         public static readonly Vector VEC_RIGHT = new Vector(1, 0);
         public static readonly Vector VEC_LEFT = new Vector(-1, 0);
     }
-
-    public class MarginConverter : IValueConverter
-    {
-        public object Convert(object value, System.Type targetType, object parameter,
-            System.Globalization.CultureInfo culture)
-        {
-            return new Thickness(
-                Constants.CANVAS_WIDTH / 2 - Constants.WIN_LABEL_WIDTH / 2,
-                Constants.CANVAS_HEIGHT / 2 - Constants.WIN_LABEL_HEIGHT / 2,
-                0,
-                0
-            );
-        }
-
-        public object ConvertBack(object value, System.Type targetType, object parameter,
-            System.Globalization.CultureInfo culture)
-        {
-            return null;
-        }
-    }
 }
