@@ -28,18 +28,16 @@ namespace SimpleUIPong
         public void UpdatePosition()
         {
             if (Move == MoveDir.IDLE) return;
-            //switch (Move)
-            //{
-            //    case MoveDir.UP: 
-            //        this.Pos = new Vector(Pos.X, Pos.Y - Constants.PLAYER_SPEED);
-            //        break;
-            //    case MoveDir.DOWN:
-            //        this.Pos = new Vector(Pos.X, Pos.Y + Constants.PLAYER_SPEED);
-            //        break;
-            //    default:
-            //        return;
-            //}
+
             this.Pos = GetClampedPosVector();
+            this.Rect.SetValue(Canvas.LeftProperty, Pos.X);
+            this.Rect.SetValue(Canvas.TopProperty, Pos.Y);
+        }
+
+        public void ResetPosition()
+        {
+            this.Pos = new Vector(Constants.PLAYER_SIDE_MARGIN, Constants.CANVAS_HEIGHT / 2 - Rect.Height / 2);
+
             this.Rect.SetValue(Canvas.LeftProperty, Pos.X);
             this.Rect.SetValue(Canvas.TopProperty, Pos.Y);
         }

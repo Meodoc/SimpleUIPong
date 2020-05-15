@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
@@ -10,7 +11,7 @@ namespace SimpleUIPong
         private readonly MainWindow mainWindow;
         private readonly Canvas rootCanvas;
 
-        private readonly DispatcherTimer timer = new DispatcherTimer {Interval = TimeSpan.FromMilliseconds(Constants.REFRESH_RATE)};
+        private DispatcherTimer timer = new DispatcherTimer {Interval = TimeSpan.FromMilliseconds(Constants.REFRESH_RATE)};
         
         private readonly Player player;
         private readonly Enemy enemy;
@@ -59,6 +60,7 @@ namespace SimpleUIPong
         {
             mainWindow.AddKeyDownListener(PlayerStartMovementHandler);
             mainWindow.AddKeyUpListener(PlayerStopMovementHandler);
+            mainWindow.AddKeyDownListener(RetryHandler);
         }
 
         private void PlayerStartMovementHandler(object sender, KeyEventArgs e)
@@ -74,6 +76,27 @@ namespace SimpleUIPong
         {
             if (e.Key == Key.Down || e.Key == Key.Up)
                 player.Move = MoveDir.IDLE;
+        }
+
+        private void RetryHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Reset();
+            }
+        }
+
+        private void Reset()
+        {
+            this.timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(Constants.REFRESH_RATE) };
+            winnerMsgLabel.Content = "";
+            retryMsgLabel.Content = "";
+
+            player.ResetPosition();
+            enemy.ResetPosition();
+            ball.ResetPosition();
+
+            InitAndStartTimer();
         }
 
         private void HandleCollisions()

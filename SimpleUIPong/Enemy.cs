@@ -32,6 +32,14 @@ namespace SimpleUIPong
             this.Rect.SetValue(Canvas.TopProperty, Pos.Y);
         }
 
+        public void ResetPosition()
+        {
+            this.Pos = new Vector(Constants.CANVAS_WIDTH - Constants.PLAYER_SIDE_MARGIN - Rect.Width, Constants.CANVAS_HEIGHT / 2 - Rect.Height / 2);
+
+            this.Rect.SetValue(Canvas.LeftProperty, Pos.X);
+            this.Rect.SetValue(Canvas.TopProperty, Pos.Y);
+        }
+
         private Vector GetClampedPosVector(Ball ball)
         {
 
