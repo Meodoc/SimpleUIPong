@@ -32,7 +32,7 @@ namespace SimpleUIPong
 
         public const int PLAYER_SPEED = 5;
         public const int ENEMY_SPEED = 3;
-        public const int BALL_SPEED = 3;
+        public const int BALL_SPEED = 7;
 
         public static readonly Vector VEC_UP = new Vector(0, -1);
         public static readonly Vector VEC_DOWN = new Vector(0, 1);

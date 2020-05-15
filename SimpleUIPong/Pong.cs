@@ -96,7 +96,7 @@ namespace SimpleUIPong
         private void HandlePlayerCollision()
         {
             playerPosLabel.Content = "X: " + ball.Pos.X + " Y: " + ball.Pos.Y;
-
+            debugLabel.Content = "Player Y + rect.Height: " + player.Pos.Y + player.Rect.Height;
 
             if (ball.Pos.X < player.Pos.X + player.Rect.Width &&
                 ball.Pos.Y + ball.Rect.Height > player.Pos.Y && ball.Pos.Y < player.Pos.Y + player.Rect.Height)
@@ -107,7 +107,7 @@ namespace SimpleUIPong
         {
 
             Boolean trigger1 = ball.Pos.X + ball.Rect.Width > enemy.Pos.X;
-            debugLabel.Content = "Ball X trigger: " + trigger1;
+
             if (ball.Pos.X + ball.Rect.Width > enemy.Pos.X &&
                 ball.Pos.Y + ball.Rect.Height > enemy.Pos.Y && ball.Pos.Y < enemy.Pos.Y + enemy.Rect.Height)
                 ball.Reflect(Constants.VEC_LEFT);

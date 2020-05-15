@@ -1,4 +1,5 @@
-﻿using System.CodeDom;
+﻿using System;
+using System.CodeDom;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -26,15 +27,23 @@ namespace SimpleUIPong
 
         public void UpdatePosition(Ball ball)
         {
-            if (BallIsAbove(ball))
-                this.Pos = new Vector(Pos.X, Pos.Y - Constants.ENEMY_SPEED);
-            else if (BallIsBelow(ball))
-                this.Pos = new Vector(Pos.X, Pos.Y + Constants.ENEMY_SPEED);
-            else
-                return;
-
+            this.Pos = GetClampedPosVector(ball);
             this.Rect.SetValue(Canvas.LeftProperty, Pos.X);
             this.Rect.SetValue(Canvas.TopProperty, Pos.Y);
+        }
+
+        private Vector GetClampedPosVector(Ball ball)
+        {
+
+            double newY;
+            if (BallIsAbove(ball))
+                newY = Math.Max(0, Pos.Y - Constants.ENEMY_SPEED);
+            else if (BallIsBelow(ball))
+                newY = Math.Min(Constants.CANVAS_HEIGHT, Pos.Y + Rect.Height + Constants.ENEMY_SPEED) - Rect.Height;
+            else
+                newY = Pos.Y;
+
+            return new Vector(Pos.X, newY);
         }
 
         private bool BallIsAbove(Ball ball)

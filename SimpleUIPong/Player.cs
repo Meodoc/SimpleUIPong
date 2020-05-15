@@ -30,20 +30,34 @@ namespace SimpleUIPong
 
         public void UpdatePosition()
         {
-            switch (Move)
-            {
-                case MoveDir.UP: 
-                    this.Pos = new Vector(Pos.X, Pos.Y - Constants.PLAYER_SPEED);
-                    break;
-                case MoveDir.DOWN:
-                    this.Pos = new Vector(Pos.X, Pos.Y + Constants.PLAYER_SPEED);
-                    break;
-                default:
-                    return;
-            }
-
+            if (Move == MoveDir.IDLE) return;
+            //switch (Move)
+            //{
+            //    case MoveDir.UP: 
+            //        this.Pos = new Vector(Pos.X, Pos.Y - Constants.PLAYER_SPEED);
+            //        break;
+            //    case MoveDir.DOWN:
+            //        this.Pos = new Vector(Pos.X, Pos.Y + Constants.PLAYER_SPEED);
+            //        break;
+            //    default:
+            //        return;
+            //}
+            this.Pos = GetClampedPosVector();
             this.Rect.SetValue(Canvas.LeftProperty, Pos.X);
             this.Rect.SetValue(Canvas.TopProperty, Pos.Y);
+        }
+
+        private Vector GetClampedPosVector()
+        {
+            double newY = Move switch
+            {
+                MoveDir.UP => Math.Max(0, Pos.Y - Constants.PLAYER_SPEED),
+                MoveDir.DOWN => Math.Min(Constants.CANVAS_HEIGHT, Pos.Y + Rect.Height + Constants.PLAYER_SPEED) - Rect.Height,
+                MoveDir.IDLE => Pos.Y,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+
+            return new Vector(Pos.X, newY);
         }
 
         private Rectangle InitPlayerRect()
