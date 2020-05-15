@@ -27,7 +27,7 @@ namespace SimpleUIPong
         public const int RETRY_LABEL_WIDTH = 400;
         public const int RETRY_LABEL_FONTSIZE = 25;
 
-        public const double PLAYER_SPEED = 5;
+        public const double PLAYER_SPEED = 6;
         public const int ENEMY_SPEED = 5;
         public const double BALL_SPEED = 12;
 
