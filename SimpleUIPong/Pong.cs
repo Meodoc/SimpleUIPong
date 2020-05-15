@@ -97,9 +97,7 @@ namespace SimpleUIPong
             {
                 case CollisionSide.RIGHT:
                     ball.SetX(player.Pos.X + player.Rect.Width);
-                    //ball.Reflect(Constants.VEC_RIGHT);
-                    //ball.Reflect(Utils.GenerateRandomDirectionVector(Dir.RIGHT));
-                    ball.Dir = Utils.GenerateRandomDirectionVector(Dir.RIGHT);
+                    ball.Dir = Utils.RandDirVecInRange(Dir.RIGHT, Constants.RANDOM_VEC_ANGLE);
                     break;
                 case CollisionSide.TOP:
                     ball.SetY(player.Pos.Y - ball.Rect.Height);
@@ -120,9 +118,7 @@ namespace SimpleUIPong
             {
                 case CollisionSide.LEFT:
                     ball.SetX(enemy.Pos.X - ball.Rect.Width);
-                    //ball.Reflect(Constants.VEC_LEFT);
-                    //ball.Reflect(Utils.GenerateRandomDirectionVector(Dir.LEFT));
-                    ball.Dir = Utils.GenerateRandomDirectionVector(Dir.LEFT);
+                    ball.Dir = Utils.RandDirVecInRange(Dir.LEFT, Constants.RANDOM_VEC_ANGLE);
                     break;
                 case CollisionSide.TOP:
                     ball.SetY(enemy.Pos.Y - ball.Rect.Height);

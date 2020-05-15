@@ -12,19 +12,19 @@ namespace SimpleUIPong
             return v1.X * v2.X + v1.Y * v2.Y;
         }
 
-        public static Vector GenerateRandomDirectionVector(Dir dir)
+        public static Vector RandDirVecInRange(Dir dir, int angle)
         {
             Random r = new Random();
-            double angle = ToRad(r.Next(-Constants.RANDOM_VEC_ANGLE, Constants.RANDOM_VEC_ANGLE));
+            double angleRad = ToRad(r.Next(-angle, angle));
             
             switch (dir)
             {
                 case Dir.LEFT:
-                    Vector v = new Vector(-Math.Cos(angle), Math.Sin(angle));
+                    Vector v = new Vector(-Math.Cos(angleRad), Math.Sin(angleRad));
                     v.Normalize();
                     return v;
                 case Dir.RIGHT:
-                    v = new Vector(Math.Cos(angle), Math.Sin(angle));
+                    v = new Vector(Math.Cos(angleRad), Math.Sin(angleRad));
                     v.Normalize();
                     return v;
                 default:
