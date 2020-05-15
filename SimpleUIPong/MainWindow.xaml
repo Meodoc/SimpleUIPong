@@ -55,7 +55,7 @@
                    Width="{Binding Source={x:Static local:Constants.WIN_LABEL_WIDTH}}"
                    Height="{Binding Source={x:Static local:Constants.WIN_LABEL_HEIGHT}}"
                    FontSize="{Binding Source={x:Static local:Constants.WIN_LABEL_FONTSIZE}}"
-                   Margin = "{Binding Converter={StaticResource MarginConverter}}">
+                   Margin="{Binding Converter={StaticResource MarginConverter}}">
             </Label>
 
         </Canvas>
