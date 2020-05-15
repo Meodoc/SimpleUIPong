@@ -16,11 +16,9 @@ namespace SimpleUIPong
         private readonly Enemy enemy;
         private readonly Ball ball;
 
-        private Label debugLabel;
-        private Label playerPosLabel;
         private readonly Label winnerMsgLabel;
 
-        public Pong(MainWindow mainWindow, Canvas rootCanvas, Label debugLabel, Label playerPosLabel, Label winnerMsgLabel)
+        public Pong(MainWindow mainWindow, Canvas rootCanvas, Label winnerMsgLabel)
         {
             this.mainWindow = mainWindow;
             this.rootCanvas = rootCanvas;
@@ -28,16 +26,10 @@ namespace SimpleUIPong
             this.enemy = new Enemy(rootCanvas);
             this.ball = new Ball(rootCanvas);
 
-            this.debugLabel = debugLabel;
-            this.playerPosLabel = playerPosLabel;
             this.winnerMsgLabel = winnerMsgLabel;
 
             InitKeyHandlers();
             InitAndStartTimer();
-
-            // TODO: make ball refelction from player random
-            // TODO: dynamic margin!
-            // TODO: keymap to handle simultaneous key inputs
         }
 
         private void Run(object sender, EventArgs e)
