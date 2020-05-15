@@ -19,9 +19,13 @@ namespace SimpleUIPong
         public const int CANVAS_WIDTH = 1185;
         public const int CANVAS_HEIGHT = 760;
 
-        public const int WIN_LABEL_HEIGHT = 50;
-        public const int WIN_LABEL_WIDTH = 150;
-        public const int WIN_LABEL_FONTSIZE = 20;
+        public const int WIN_LABEL_HEIGHT = 100;
+        public const int WIN_LABEL_WIDTH = 1000;
+        public const int WIN_LABEL_FONTSIZE = 50;
+
+        public const int RETRY_LABEL_HEIGHT = 50;
+        public const int RETRY_LABEL_WIDTH = 400;
+        public const int RETRY_LABEL_FONTSIZE = 25;
 
         public const double PLAYER_SPEED = 5;
         public const int ENEMY_SPEED = 5;

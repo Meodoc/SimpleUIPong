@@ -1,22 +1,26 @@
-﻿<Window x:Class="SimpleUIPong.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SimpleUIPong"
-        xmlns:system="clr-namespace:System;assembly=mscorlib"
-        mc:Ignorable="d"
-        Title="Pong"
-        Icon="icon.ico"
-        Height="{Binding Source={x:Static local:Constants.WINDOW_HEIGHT}}" 
-        Width="{Binding Source={x:Static local:Constants.WINDOW_WIDTH}}"
-        ResizeMode="NoResize">
-
+﻿
+    
+<Window x:Class="SimpleUIPong.MainWindow"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:local="clr-namespace:SimpleUIPong"
+            xmlns:system="clr-namespace:System;assembly=mscorlib"
+            mc:Ignorable="d"
+            Title="Pong"
+            Icon="icon.ico"
+            Height="{Binding Source={x:Static local:Constants.WINDOW_HEIGHT}}" 
+            Width="{Binding Source={x:Static local:Constants.WINDOW_WIDTH}}"
+            ResizeMode="NoResize">
 
     <Window.Resources>
-        <local:MarginConverter x:Key="MarginConverter"></local:MarginConverter>
-        <local:PlayerEnemyCanvasTopConverter x:Key="PlayerEnemyCanvasTopConverter"></local:PlayerEnemyCanvasTopConverter>
-    </Window.Resources>
+        <local:WinLabelMarginConverter x:Key="WinLabelMarginConverter"></local:WinLabelMarginConverter>
+        <local:RetryLabelMarginConverter x:Key="RetryLabelMarginConverter"></local:RetryLabelMarginConverter>
+
+</Window.Resources>
+
+
 
     <Border BorderBrush="Black" 
             BorderThickness="1" 
@@ -54,13 +58,24 @@
             </Rectangle>
             </-->
 
-            <Label x:Name="PlayerPos" Margin="0, 0, 0, 0"></Label>
-            <Label x:Name="Debug" Margin="0, 20, 0, 0"></Label>
             <Label x:Name="WinnerMessage"
                    Width="{Binding Source={x:Static local:Constants.WIN_LABEL_WIDTH}}"
                    Height="{Binding Source={x:Static local:Constants.WIN_LABEL_HEIGHT}}"
                    FontSize="{Binding Source={x:Static local:Constants.WIN_LABEL_FONTSIZE}}"
-                   Margin="{Binding Converter={StaticResource MarginConverter}}">
+                   Margin="{Binding Converter={StaticResource WinLabelMarginConverter}}"
+                   HorizontalContentAlignment="Center"
+                   FontFamily="Roboto"
+                   FontWeight="Bold">
+            </Label>
+
+            <Label x:Name="RetryMessage"
+                   Width="{Binding Source={x:Static local:Constants.RETRY_LABEL_WIDTH}}"
+                   Height="{Binding Source={x:Static local:Constants.RETRY_LABEL_HEIGHT}}"
+                   FontSize="{Binding Source={x:Static local:Constants.RETRY_LABEL_FONTSIZE}}"
+                   Margin="{Binding Converter={StaticResource RetryLabelMarginConverter}}"
+                   HorizontalContentAlignment="Center"
+                   FontFamily="Roboto"
+                   FontWeight="Bold">
             </Label>
 
         </Canvas>

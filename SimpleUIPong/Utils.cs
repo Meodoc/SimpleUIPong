@@ -40,7 +40,7 @@ namespace SimpleUIPong
 
 
 
-    public class MarginConverter : IValueConverter
+    public class WinLabelMarginConverter : IValueConverter
     {
         public object Convert(object value, System.Type targetType, object parameter,
             System.Globalization.CultureInfo culture)
@@ -48,6 +48,27 @@ namespace SimpleUIPong
             return new Thickness(
                 Constants.CANVAS_WIDTH / 2 - Constants.WIN_LABEL_WIDTH / 2,
                 Constants.CANVAS_HEIGHT / 2 - Constants.WIN_LABEL_HEIGHT / 2,
+                0,
+                0
+            );
+        }
+
+        public object ConvertBack(object value, System.Type targetType, object parameter,
+            System.Globalization.CultureInfo culture)
+        {
+            return null;
+        }
+    }
+
+
+    public class RetryLabelMarginConverter : IValueConverter
+    {
+        public object Convert(object value, System.Type targetType, object parameter,
+            System.Globalization.CultureInfo culture)
+        {
+            return new Thickness(
+                Constants.CANVAS_WIDTH / 2 - Constants.RETRY_LABEL_WIDTH / 2,
+                Constants.CANVAS_HEIGHT / 2 - Constants.RETRY_LABEL_HEIGHT / 2 + 100,
                 0,
                 0
             );

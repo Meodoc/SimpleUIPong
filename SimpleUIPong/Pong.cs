@@ -17,8 +17,9 @@ namespace SimpleUIPong
         private readonly Ball ball;
 
         private readonly Label winnerMsgLabel;
+        private readonly Label retryMsgLabel;
 
-        public Pong(MainWindow mainWindow, Canvas rootCanvas, Label winnerMsgLabel)
+        public Pong(MainWindow mainWindow, Canvas rootCanvas, Label winnerMsgLabel, Label retryMsgLabel)
         {
             this.mainWindow = mainWindow;
             this.rootCanvas = rootCanvas;
@@ -27,6 +28,7 @@ namespace SimpleUIPong
             this.ball = new Ball(rootCanvas);
 
             this.winnerMsgLabel = winnerMsgLabel;
+            this.retryMsgLabel = retryMsgLabel;
 
             InitKeyHandlers();
             InitAndStartTimer();
@@ -49,7 +51,8 @@ namespace SimpleUIPong
         private void StopTimerAndFinishGame(bool won)
         {
             timer.Stop();
-            winnerMsgLabel.Content = won ? "YOU WON" : "YOU LOST";
+            winnerMsgLabel.Content = won ? "YOU WON" : "COMPUTER WON";
+            retryMsgLabel.Content = "Press ENTER to retry";
         }
 
         private void InitKeyHandlers()

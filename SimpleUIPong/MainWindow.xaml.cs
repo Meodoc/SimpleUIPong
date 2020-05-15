@@ -19,7 +19,8 @@ namespace SimpleUIPong
         public MainWindow()
         {
             InitializeComponent();
-            new Pong(this, RootCanvas, WinnerMessage);
+
+            new Pong(this, RootCanvas, WinnerMessage, RetryMessage);
         }
 
         public void AddKeyUpListener(KeyEventHandler listener)
