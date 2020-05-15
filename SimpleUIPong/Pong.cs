@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
@@ -47,16 +46,16 @@ namespace SimpleUIPong
             HandleCollisions();
         }
 
-        private void StopTimerAndFinishGame(bool won)
-        {
-            timer.Stop();
-            winnerMsgLabel.Content = won ? "YOU WON" : "YOU LOST";
-        }
-
         private void InitAndStartTimer()
         {
             timer.Tick += Run;
             timer.Start();
+        }
+
+        private void StopTimerAndFinishGame(bool won)
+        {
+            timer.Stop();
+            winnerMsgLabel.Content = won ? "YOU WON" : "YOU LOST";
         }
 
         private void InitKeyHandlers()
