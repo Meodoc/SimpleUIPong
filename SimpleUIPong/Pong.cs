@@ -34,13 +34,8 @@ namespace SimpleUIPong
             InitKeyHandlers();
             InitAndStartTimer();
 
-            // TODO: make keyDown refresh with the clock somehow
             // TODO: make ball refelction from player random
-            // TODO: clamp player movement
-            // TODO: smooth player movement
             // TODO: dynamic margin!
-
-            // TODO: bug when ball enters from the side
             // TODO: keymap to handle simultaneous key inputs
         }
 
@@ -97,32 +92,44 @@ namespace SimpleUIPong
             playerPosLabel.Content = "X: " + ball.Pos.X + " Y: " + ball.Pos.Y;
             debugLabel.Content = "Player Y + rect.Height: " + player.Pos.Y + player.Rect.Height;
 
-            if (collidesWithPlayer())
+            if (!CollidesWithPlayer()) return;
+
+            switch (GetPlayerCollisionSide())
             {
-                switch (GetPlayerCollisionSide())
-                {
-                    case CollisionSide.RIGHT:
-                        ball.SetX(player.Pos.X + player.Rect.Width);
-                        ball.Reflect(Constants.VEC_RIGHT);
-                        break;
-                    case CollisionSide.TOP:
-                        ball.SetY(player.Pos.Y - ball.Rect.Height);
-                        ball.Reflect(Constants.VEC_UP);
-                        break;
-                    case CollisionSide.BOTTOM:
-                        ball.SetY(player.Pos.Y + player.Rect.Height);
-                        ball.Reflect(Constants.VEC_DOWN);
-                        break;
-                }
+                case CollisionSide.RIGHT:
+                    ball.SetX(player.Pos.X + player.Rect.Width);
+                    ball.Reflect(Constants.VEC_RIGHT);
+                    break;
+                case CollisionSide.TOP:
+                    ball.SetY(player.Pos.Y - ball.Rect.Height);
+                    ball.Reflect(Constants.VEC_UP);
+                    break;
+                case CollisionSide.BOTTOM:
+                    ball.SetY(player.Pos.Y + player.Rect.Height);
+                    ball.Reflect(Constants.VEC_DOWN);
+                    break;
             }
         }
 
         private void HandleEnemyCollision()
         {
+            if (!CollidesWithEnemy()) return;
 
-            if (ball.Pos.X + ball.Rect.Width > enemy.Pos.X &&
-                ball.Pos.Y + ball.Rect.Height > enemy.Pos.Y && ball.Pos.Y < enemy.Pos.Y + enemy.Rect.Height)
-                ball.Reflect(Constants.VEC_LEFT);
+            switch (GetEnemyCollisionSide())
+            {
+                case CollisionSide.LEFT:
+                    ball.SetX(enemy.Pos.X - ball.Rect.Width);
+                    ball.Reflect(Constants.VEC_LEFT);
+                    break;
+                case CollisionSide.TOP:
+                    ball.SetY(enemy.Pos.Y - ball.Rect.Height);
+                    ball.Reflect(Constants.VEC_UP);
+                    break;
+                case CollisionSide.BOTTOM:
+                    ball.SetY(enemy.Pos.Y + enemy.Rect.Height);
+                    ball.Reflect(Constants.VEC_DOWN);
+                    break;
+            }
         }
 
 
@@ -162,16 +169,38 @@ namespace SimpleUIPong
 
             if (dY > dX)
                 return CollisionSide.RIGHT;
-            else
-                return top ? CollisionSide.TOP : CollisionSide.BOTTOM;
+
+            return top ? CollisionSide.TOP : CollisionSide.BOTTOM;
             
         }
 
-        private bool collidesWithPlayer()
+        private CollisionSide GetEnemyCollisionSide()
+        {
+            double dYTop = ball.Pos.Y + ball.Rect.Height - enemy.Pos.Y;
+            double dYBottom = enemy.Pos.Y + enemy.Rect.Height - ball.Pos.Y;
+            double dY = Math.Min(dYTop, dYBottom);
+            bool top = dYTop < dYBottom;
+
+            double dX = ball.Pos.X + ball.Rect.Width - enemy.Pos.X;
+
+            if (dY > dX)
+                return CollisionSide.LEFT;
+
+            return top ? CollisionSide.TOP : CollisionSide.BOTTOM;
+        }
+
+        private bool CollidesWithPlayer()
         {
             return ball.Pos.X < player.Pos.X + player.Rect.Width &&
                    ball.Pos.Y + ball.Rect.Height > player.Pos.Y &&
                    ball.Pos.Y < player.Pos.Y + player.Rect.Height;
+        }
+
+        private bool CollidesWithEnemy()
+        {
+            return ball.Pos.X + ball.Rect.Width > enemy.Pos.X &&
+                   ball.Pos.Y + ball.Rect.Height > enemy.Pos.Y &&
+                   ball.Pos.Y < enemy.Pos.Y + enemy.Rect.Height;
         }
     }
 }
