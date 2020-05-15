@@ -11,15 +11,15 @@ namespace SimpleUIPong
     {
         private readonly Canvas rootCanvas;
 
-        private DispatcherTimer timer = new DispatcherTimer {Interval = TimeSpan.FromMilliseconds(Constants.REFRESH_RATE)};
+        private readonly DispatcherTimer timer = new DispatcherTimer {Interval = TimeSpan.FromMilliseconds(Constants.REFRESH_RATE)};
         
-        private Player player;
-        private Enemy enemy;
-        private Ball ball;
+        private readonly Player player;
+        private readonly Enemy enemy;
+        private readonly Ball ball;
 
         private Label debugLabel;
         private Label playerPosLabel;
-        private Label winnerMsgLabel;
+        private readonly Label winnerMsgLabel;
 
         public Pong(Canvas rootCanvas, Label debugLabel, Label playerPosLabel, Label winnerMsgLabel)
         {
