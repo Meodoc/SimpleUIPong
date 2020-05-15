@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
@@ -96,15 +97,28 @@ namespace SimpleUIPong
             playerPosLabel.Content = "X: " + ball.Pos.X + " Y: " + ball.Pos.Y;
             debugLabel.Content = "Player Y + rect.Height: " + player.Pos.Y + player.Rect.Height;
 
-            if (ball.Pos.X < player.Pos.X + player.Rect.Width &&
-                ball.Pos.Y + ball.Rect.Height > player.Pos.Y && ball.Pos.Y < player.Pos.Y + player.Rect.Height)
-                ball.Reflect(Constants.VEC_RIGHT);
+            if (collidesWithPlayer())
+            {
+                switch (GetPlayerCollisionSide())
+                {
+                    case CollisionSide.RIGHT:
+                        ball.SetX(player.Pos.X + player.Rect.Width);
+                        ball.Reflect(Constants.VEC_RIGHT);
+                        break;
+                    case CollisionSide.TOP:
+                        ball.SetY(player.Pos.Y - ball.Rect.Height);
+                        ball.Reflect(Constants.VEC_UP);
+                        break;
+                    case CollisionSide.BOTTOM:
+                        ball.SetY(player.Pos.Y + player.Rect.Height);
+                        ball.Reflect(Constants.VEC_DOWN);
+                        break;
+                }
+            }
         }
 
         private void HandleEnemyCollision()
         {
-
-            Boolean trigger1 = ball.Pos.X + ball.Rect.Width > enemy.Pos.X;
 
             if (ball.Pos.X + ball.Rect.Width > enemy.Pos.X &&
                 ball.Pos.Y + ball.Rect.Height > enemy.Pos.Y && ball.Pos.Y < enemy.Pos.Y + enemy.Rect.Height)
@@ -116,11 +130,17 @@ namespace SimpleUIPong
         {
             // Top border
             if (ball.Pos.Y < 0)
+            {
+                ball.SetY(0);
                 ball.Reflect(Constants.VEC_DOWN);
+            }
 
             // Bottom border
             if (ball.Pos.Y + ball.Rect.Height > Constants.CANVAS_HEIGHT)
+            {
+                ball.SetY(Constants.CANVAS_HEIGHT - ball.Rect.Height);
                 ball.Reflect(Constants.VEC_UP);
+            }
 
             // Left border
             if (ball.Pos.X < 0)
@@ -129,6 +149,29 @@ namespace SimpleUIPong
             // Right border
             if (ball.Pos.X + ball.Rect.Width > Constants.CANVAS_WIDTH)
                 StopTimerAndFinishGame(true);
+        }
+
+        private CollisionSide GetPlayerCollisionSide()
+        {
+            double dYTop = ball.Pos.Y + ball.Rect.Height - player.Pos.Y;
+            double dYBottom = player.Pos.Y + player.Rect.Height - ball.Pos.Y;
+            double dY = Math.Min(dYTop, dYBottom);
+            bool top = dYTop < dYBottom;
+
+            double dX = player.Pos.X + player.Rect.Width - ball.Pos.X;
+
+            if (dY > dX)
+                return CollisionSide.RIGHT;
+            else
+                return top ? CollisionSide.TOP : CollisionSide.BOTTOM;
+            
+        }
+
+        private bool collidesWithPlayer()
+        {
+            return ball.Pos.X < player.Pos.X + player.Rect.Width &&
+                   ball.Pos.Y + ball.Rect.Height > player.Pos.Y &&
+                   ball.Pos.Y < player.Pos.Y + player.Rect.Height;
         }
     }
 }

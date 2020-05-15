@@ -43,6 +43,15 @@ namespace SimpleUIPong
             this.Dir = Vector.Multiply(Constants.BALL_SPEED, newDir);
         }
 
+        public void SetX(double x)
+        {
+            this.Pos = new Vector(x, Pos.Y);
+        }
+        public void SetY(double y)
+        {
+            this.Pos = new Vector(Pos.X, y);
+        }
+
         public Rectangle CreatePongBall()
         {
             Rectangle ball = new Rectangle {Height = Constants.BALL_LENGTH, Width = Constants.BALL_LENGTH};
